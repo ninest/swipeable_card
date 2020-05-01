@@ -9,15 +9,10 @@ class HomeRoute extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Align(
-            alignment: Alignment.center,
-            child: SwipableWidget(
-              onHorizontalSwipe: () {
-                print("Horizintally swiped!");
-              },
-              child: CardExample(),
-            ),
-          )
+          SwipableWidget(
+            onHorizontalSwipe: () => print("Horizintally swiped!"),
+            child: CardExample(),
+          ),
         ],
       ),
     );
@@ -31,7 +26,7 @@ class CardExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 400,
-      width: 300,
+      width: 200,
       color: Colors.indigo,
       child: Text("This is an example"),
     );

@@ -1,0 +1,23 @@
+name: example
+version: 1.0.0
+homepage: https://github.com/themindstorm/swipable_widget	
+author: themindstorm
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  swipable_widget:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+dependency_overrides:
+  swipable_widget:
+    path: ../
+
+flutter:
+  uses-material-design: true

@@ -12,6 +12,9 @@ class HomeRoute extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: SwipableWidget(
+              onHorizontalSwipe: () {
+                print("Horizintally swiped!");
+              },
               child: CardExample(),
             ),
           )

@@ -1,12 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
+f() {}
+
 class SwipableWidget extends StatefulWidget {
   SwipableWidget({
     Key key,
     this.durationMilliseconds = 120,
     this.scrollSensitivity = 3,
-    this.sideThreshold = 0.95,
+    this.horizontalThreshold = 0.95,
+    this.onHorizontalSwipe,
+    this.onVerticalSwipe,
     @required this.child,
   }) : super(key: key);
 
@@ -19,8 +23,16 @@ class SwipableWidget extends StatefulWidget {
   final int scrollSensitivity;
 
   /// Defines an x (horizontal axis) value for alignment. If the widget is dragged
-  /// beyond the [sideThreshold], it will be animated out
-  final double sideThreshold;
+  /// beyond the [horizontalThreshold], it will be animated out
+  final double horizontalThreshold;
+
+  /// Function called when the widget is swiped then animated beyond
+  /// the [horizontalThreshold]
+  final Function onHorizontalSwipe;
+
+  /// Function called when the widget is swiped then animated beyond
+  /// the [verticalThreshold]
+  final Function onVerticalSwipe;
 
   final Widget child;
 
@@ -113,23 +125,52 @@ class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProvid
       onPanEnd: (DragEndDetails details) {
         /*
         There are 2 possibilities:
-        1. The card was dragged beyond the sideThreshold and should be animated
-        out
-        2. The card was not dragged beyond the threshold (should be animated
+        1. The card was dragged beyond the horizontalThreshold and should be animated
+        out horizontally
+        2. The card was dragged beyond the verticalThreshold and should be animated
+        out vertically
+
+        3. The card was not dragged beyond the threshold (should be animated
         back to the origin)
         */
-        if (_alignment.x < -widget.sideThreshold || _alignment.x > widget.sideThreshold) {
-          if (_alignment.x > widget.sideThreshold) _runLeaveScreenAnimation();
+
+        // (1)
+        // TODO: use absolute to remove the need of using or
+        if (_alignment.x < -widget.horizontalThreshold ||
+            _alignment.x > widget.horizontalThreshold) {
+          if (_alignment.x > widget.horizontalThreshold)
+            _runLeaveScreenAnimation();
           // If it's dragged to the left side, animate it leaving from the left side
-          else _runLeaveScreenAnimation(toLeft: true);
+          else
+            _runLeaveScreenAnimation(toLeft: true);
 
           /* 
           We need to wait for the animation to finish. Only then we should execute the
-          [onSwipeSide] function
+          [onSwipeSide] function.
+          That's why the duration of the future.delayed is higher. We need to wait for the
+          animation to complete fully
           */
-        }
+
+          Future.delayed(Duration(milliseconds: widget.durationMilliseconds + 100)).then((_) {
+            // Move the widget (child) back to the center without animation, giving the appearance
+            // that the next widget "in line" has come to the top
+            // It is expected that the child of this widget is being changed through state management
+            setState(() {
+              _alignment = Alignment.center;
+            });
+
+            // the card has successfully been swiped away, so call the function
+            widget.onHorizontalSwipe();
+          });
+        } else
+          // (3) The widget has been left down at the finger at a position, so animate
+          // it going back to the origin (center)
+          _runBackToOriginAnimation();
       },
-      child: widget.child,
+      child: Align(
+        alignment: _alignment,
+        child: widget.child,
+      ),
     );
 
     // return Container(

@@ -6,6 +6,7 @@ class SwipableWidget extends StatefulWidget {
     Key key,
     this.durationMilliseconds = 120,
     this.scrollSensitivity = 3,
+    this.sideThreshold = 0.95,
     @required this.child,
   }) : super(key: key);
 
@@ -16,6 +17,11 @@ class SwipableWidget extends StatefulWidget {
   /// The multiplier for the drag alignment. A value of 2.5 to 3 feels natural
   /// while higher values will be better for larger screens
   final int scrollSensitivity;
+
+  /// Defines an x (horizontal axis) value for alignment. If the widget is dragged
+  /// beyond the [sideThreshold], it will be animated out
+  final double sideThreshold;
+
   final Widget child;
 
   @override
@@ -104,6 +110,26 @@ class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProvid
           );
         });
       },
+      onPanEnd: (DragEndDetails details) {
+        /*
+        There are 2 possibilities:
+        1. The card was dragged beyond the sideThreshold and should be animated
+        out
+        2. The card was not dragged beyond the threshold (should be animated
+        back to the origin)
+        */
+        if (_alignment.x < -widget.sideThreshold || _alignment.x > widget.sideThreshold) {
+          if (_alignment.x > widget.sideThreshold) _runLeaveScreenAnimation();
+          // If it's dragged to the left side, animate it leaving from the left side
+          else _runLeaveScreenAnimation(toLeft: true);
+
+          /* 
+          We need to wait for the animation to finish. Only then we should execute the
+          [onSwipeSide] function
+          */
+        }
+      },
+      child: widget.child,
     );
 
     // return Container(

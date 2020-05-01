@@ -30,8 +30,8 @@ class CardExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      width: 200,
+      height: 400,
+      width: 300,
       color: Colors.indigo,
       child: Text("This is an example"),
     );

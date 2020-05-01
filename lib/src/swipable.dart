@@ -6,9 +6,9 @@ f() {}
 class SwipableWidget extends StatefulWidget {
   SwipableWidget({
     Key key,
-    this.durationMilliseconds = 120,
-    this.scrollSensitivity = 3,
-    this.horizontalThreshold = 0.95,
+    this.durationMilliseconds = 300,
+    this.scrollSensitivity = 1.5,
+    this.horizontalThreshold = 0.85,
     this.onHorizontalSwipe,
     this.onVerticalSwipe,
     @required this.child,
@@ -20,7 +20,7 @@ class SwipableWidget extends StatefulWidget {
 
   /// The multiplier for the drag alignment. A value of 2.5 to 3 feels natural
   /// while higher values will be better for larger screens
-  final int scrollSensitivity;
+  final double scrollSensitivity;
 
   /// Defines an x (horizontal axis) value for alignment. If the widget is dragged
   /// beyond the [horizontalThreshold], it will be animated out
@@ -84,9 +84,10 @@ class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProvid
 
   /// Animating the card outside the screen.
   /// [toLeft] is true when the card is to be animated leaving to the left
-  void _runLeaveScreenAnimation({bool toLeft = false}) {
+  void _runLeaveScreenAnimation({double screenWidth, bool toLeft = false}) {
     // The below values were found through trial and error on an Android device
     // and iPhone. These may require additional tweaking
+    print(screenWidth);
     double _sideAlignmentEnd = Platform.isAndroid ? 8.0 : 15.0;
 
     // Interpolation out of the screen (either left side or right side)
@@ -139,10 +140,10 @@ class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProvid
         if (_alignment.x < -widget.horizontalThreshold ||
             _alignment.x > widget.horizontalThreshold) {
           if (_alignment.x > widget.horizontalThreshold)
-            _runLeaveScreenAnimation();
+            _runLeaveScreenAnimation(screenWidth: size.width);
           // If it's dragged to the left side, animate it leaving from the left side
           else
-            _runLeaveScreenAnimation(toLeft: true);
+            _runLeaveScreenAnimation(screenWidth: size.width, toLeft: true);
 
           /* 
           We need to wait for the animation to finish. Only then we should execute the

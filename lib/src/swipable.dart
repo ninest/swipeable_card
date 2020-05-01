@@ -128,7 +128,9 @@ class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProvid
           // Update the position of the child widget based off the position of the
           // user's finger
           setState(() {
-            print(details.delta);
+            // TODO
+            // use global position with the AnimatedPositioned
+            print(details.globalPosition.dx);
             _alignment += Alignment(
               // Dividing by 2 to convert the distance dragged to the coordinates
               // used by Align
@@ -181,10 +183,12 @@ class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProvid
               // the card has successfully been swiped away, so call the function
               widget.onHorizontalSwipe();
             });
-          } else
+          } else {
+            print("back to origin");
             // (3) The widget has been left down at the finger at a position, so animate
             // it going back to the origin (center)
             _runBackToOriginAnimation();
+          }
         },
         child: Align(
           alignment: _alignment,

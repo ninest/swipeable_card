@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 /*
-Trying to implement swipable widget using Positioned
+Trying to implement swipeable widget using Positioned
 This did not work out
 */
 
-class SwipableWidget extends StatefulWidget {
-  SwipableWidget({Key key, this.child, this.width, this.height}) : super(key: key);
+class SwipeableWidget extends StatefulWidget {
+  SwipeableWidget({Key key, this.child, this.width, this.height}) : super(key: key);
   final double width;
   final double height;
   final Widget child;
 
   @override
-  _SwipableWidgetState createState() => _SwipableWidgetState();
+  _SwipeableWidgetState createState() => _SwipeableWidgetState();
 }
 
-class _SwipableWidgetState extends State<SwipableWidget> {
+class _SwipeableWidgetState extends State<SwipeableWidget> {
   double _top;
   double _left;
 

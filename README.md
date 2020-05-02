@@ -1,7 +1,7 @@
 <!-- omit in toc -->
-# Swipable Widget (beta)
+# Swipeable Widget (beta)
 
-> Add swipable widget that can be swiped like a card to your app
+> Add swipeable widget that can be swiped like a card to your app
 
 ## Contents
 
@@ -34,7 +34,7 @@ Click to reveal the table of contents
 ## Quick start guide
 
 ### Installation
-Add `swipable_widget` to your `pubspec.yaml`:
+Add `swipeable_widget` to your `pubspec.yaml`:
 
 ```
 dependencies:
@@ -42,23 +42,23 @@ dependencies:
     sdk: flutter
 
   # added below
-  swipable_widget:
+  swipeable_widget:
 ```
 
 ## Examples
 
 ### App examples
-Swipable Widget is used in the following apps:
+Swipeable Widget is used in the following apps:
 - [Shots](https://github.com/themindstorm/Shots)
 - Add your own
 
 ## Documentation
-The swipable widget has to be placed in a `Stack`, for example:
+The swiepable widget has to be placed in a `Stack`, for example:
 
 ```
 Stack(
   children: <Widget>[
-    SwipableWidget(
+    SwipeableWidget(
       // parameters ...
       child: someChildWidget(),
     ),
@@ -80,7 +80,7 @@ The multiplier value for the position of the widget as it's being moved by the f
 Default value: 2.0
 
 #### double `horizontalThreshold`
-The position the swipable widget is moved horizontally for it to be moved away. 
+The position the swipeable widget is moved horizontally for it to be moved away. 
 
 This [diagram in this video](https://youtu.be/g2E7yl3MwMk?t=56) may help you visualize the correct position.
 
@@ -90,7 +90,7 @@ Default value: 0.85
 Not implemented yet.
 
 #### double `outsideScreenHorizontalValue`
-The position the swipable should end. If you want the swipable widget to animate going off screen, this value should be over `1.0`.
+The position the swipeable should end. If you want the swipeable widget to animate going off screen, this value should be over `1.0`.
 
 **Limitation/Issue**: Finding this value requires some trial and error. Please make a PR if you know off a better way to animate the widget off screen.
 
@@ -104,7 +104,7 @@ The function called when the card is moved to either side. If you're making a ca
 Not implemented yet.
 
 #### Widget `child` (required)
-The child widget, which will be swipable.
+The child widget, which will be swipeable.
 
 ## Issues and limitation
 ### `outsideScreenHorizontalValue`

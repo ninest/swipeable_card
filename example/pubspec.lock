@@ -149,7 +149,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  swipable_widget:
+  swipeable_widget:
     dependency: "direct main"
     description:
       path: ".."

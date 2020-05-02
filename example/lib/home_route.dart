@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swipable_widget/swipable_widget.dart';
+import 'package:swipeable_widget/swipeable_widget.dart';
 
 class HomeRoute extends StatelessWidget {
   const HomeRoute({Key key}) : super(key: key);
@@ -13,7 +13,7 @@ class HomeRoute extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SwipableWidget(
+          SwipeableWidget(
             outsideScreenHorizontalValue: 5.0,
             child: CardExample(
               

@@ -1,6 +1,6 @@
 name: example
 version: 1.0.0
-homepage: https://github.com/themindstorm/swipable_widget	
+homepage: https://github.com/themindstorm/swipeable_widget	
 author: themindstorm
 
 environment:
@@ -9,14 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  swipable_widget:
+  swipeable_widget:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 dependency_overrides:
-  swipable_widget:
+  swipeable_widget:
     path: ../
 
 flutter:

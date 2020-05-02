@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SwipableWidget extends StatefulWidget {
-  SwipableWidget({
+class SwipeableWidget extends StatefulWidget {
+  SwipeableWidget({
     Key key,
     this.durationMilliseconds = 120,
     this.sensitivity = 2.0,
@@ -14,7 +14,7 @@ class SwipableWidget extends StatefulWidget {
     @required this.child,
   }) : super(key: key);
 
-  /// How long it takes for the swipable widget to go back to its original
+  /// How long it takes for the swipeable widget to go back to its original
   /// position or be swiped away
   final int durationMilliseconds;
 
@@ -43,13 +43,13 @@ class SwipableWidget extends StatefulWidget {
   final Widget child;
 
   @override
-  _SwipableWidgetState createState() => _SwipableWidgetState();
+  _SwipeableWidgetState createState() => _SwipeableWidgetState();
 }
 
-class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProviderStateMixin {
+class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
-  // Holds the current alignment of the swipable widget
+  // Holds the current alignment of the swipeable widget
   // The widget is in the center by default
   Alignment _alignment = Alignment.center;
 

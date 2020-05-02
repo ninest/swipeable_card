@@ -3,6 +3,14 @@
 
 > Add swipable widget that can be swiped like a card to your app
 
+## Contents
+
+<details>
+<summary>
+Click to reveal the table of contents
+</summary>
+
+- [Contents](#contents)
 - [Quick start guide](#quick-start-guide)
   - [Installation](#installation)
 - [Examples](#examples)
@@ -19,6 +27,9 @@
     - [Function`onVerticalSwipe`](#functiononverticalswipe)
     - [Widget `child` (required)](#widget-child-required)
 - [Issues and limitation](#issues-and-limitation)
+  - [`outsideScreenHorizontalValue`](#outsidescreenhorizontalvalue)
+
+</details>
 
 ## Quick start guide
 
@@ -96,5 +107,5 @@ Not implemented yet.
 The child widget, which will be swipable.
 
 ## Issues and limitation
-
-
+### `outsideScreenHorizontalValue`
+This value should not be required, as it is found through trial and error. We can remove the requirement of this value once we found a way to properly animate a widget going off screen using `Align`.

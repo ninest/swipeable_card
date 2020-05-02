@@ -6,12 +6,22 @@ class HomeRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final double screenHeight = size.height;
+    final double screenWidth = size.width;
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
           SwipableWidget(
-            onHorizontalSwipe: () => print("Horizintally swiped!"),
-            child: CardExample(),
+            outsideScreenSideValue: 5.0,
+            width: screenWidth/1.5,
+            height: screenHeight/2,
+            child: CardExample(
+              
+              width: screenWidth/1.5,
+              height: screenHeight/2,
+            ),
           ),
         ],
       ),
@@ -20,15 +30,18 @@ class HomeRoute extends StatelessWidget {
 }
 
 class CardExample extends StatelessWidget {
-  const CardExample({Key key}) : super(key: key);
+  const CardExample({Key key, this.color = Colors.indigo, this.width, this.height})
+      : super(key: key);
+  final Color color;
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
-      width: 200,
-      color: Colors.indigo,
-      child: Text("This is an example"),
-    );
+        height: height,
+        width: width,
+        decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(10.0)),
+        child: Text("123456789"));
   }
 }

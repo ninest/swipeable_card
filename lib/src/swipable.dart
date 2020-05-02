@@ -1,17 +1,16 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 
 class SwipableWidget extends StatefulWidget {
   SwipableWidget({
     Key key,
     this.durationMilliseconds = 120,
-    this.outsideScreenSideValue,
-    this.scrollSensitivity = 2.0,
+    this.sensitivity = 2.0,
     this.horizontalThreshold = 0.85,
+    this.outsideScreenHorizontalValue,
     this.onHorizontalSwipe,
     this.onVerticalSwipe,
-    this.height,
-    this.width,
+    // this.height,
+    // this.width,
     @required this.child,
   }) : super(key: key);
 
@@ -21,11 +20,11 @@ class SwipableWidget extends StatefulWidget {
 
   /// The multiplier for the drag alignment. A value of 2.5 to 3 feels natural
   /// while higher values will be better for larger screens
-  final double scrollSensitivity;
+  final double sensitivity;
 
   /// This is pretty much a trial and error value. It's the x value for Align
   /// for the child that signifies a position beyond the screen
-  final double outsideScreenSideValue;
+  final double outsideScreenHorizontalValue;
 
   /// Defines an x (horizontal axis) value for alignment. If the widget is dragged
   /// beyond the [horizontalThreshold], it will be animated out
@@ -39,7 +38,7 @@ class SwipableWidget extends StatefulWidget {
   /// the [verticalThreshold]
   final Function onVerticalSwipe;
 
-  final double height, width;
+  // final double height, width;
 
   final Widget child;
 
@@ -100,7 +99,7 @@ class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProvid
       begin: _alignment,
       end: Alignment(
           // Make it go to the left is specified
-          toLeft ? -widget.outsideScreenSideValue : widget.outsideScreenSideValue,
+          toLeft ? -widget.outsideScreenHorizontalValue : widget.outsideScreenHorizontalValue,
           // Make it go a little lower to make it look more natural
           _alignment.y + 0.2),
     ));
@@ -125,8 +124,8 @@ class _SwipableWidgetState extends State<SwipableWidget> with SingleTickerProvid
           _alignment += Alignment(
             // Dividing by 2 to convert the distance dragged to the coordinates
             // used by Align
-            details.delta.dx * widget.scrollSensitivity / (size.width / 2),
-            details.delta.dy * widget.scrollSensitivity / (size.height / 2),
+            details.delta.dx * widget.sensitivity / (size.width / 2),
+            details.delta.dy * widget.sensitivity / (size.height / 2),
           );
         });
       },

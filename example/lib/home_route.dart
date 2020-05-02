@@ -14,9 +14,7 @@ class HomeRoute extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           SwipableWidget(
-            outsideScreenSideValue: 5.0,
-            width: screenWidth/1.5,
-            height: screenHeight/2,
+            outsideScreenHorizontalValue: 5.0,
             child: CardExample(
               
               width: screenWidth/1.5,

@@ -17,12 +17,13 @@ Click to reveal the table of contents
 </summary>
 
 - [Contents](#contents)
-- [Quick start guide](#quick-start-guide)
-  - [Installation](#installation)
 - [Examples](#examples)
+  - [Demo](#demo)
   - [App examples](#app-examples)
 - [Documentation](#documentation)
-  - [parameters](#parameters)
+  - [Installation](#installation)
+  - [Adding to your app](#adding-to-your-app)
+  - [Parameters](#parameters)
     - [int `durationMilliseconds`](#int-durationmilliseconds)
     - [double `sensitivity`](#double-sensitivity)
     - [double `horizontalThreshold`](#double-horizontalthreshold)
@@ -32,13 +33,26 @@ Click to reveal the table of contents
     - [Function `onHorizontalSwipe`](#function-onhorizontalswipe)
     - [Function`onVerticalSwipe`](#functiononverticalswipe)
     - [Widget `child` (required)](#widget-child-required)
+  - [Basic example](#basic-example)
 - [Issues and limitation](#issues-and-limitation)
   - [`outsideScreenHorizontalValue`](#outsidescreenhorizontalvalue)
 - [Other information](#other-information)
 
 </details>
 
-## Quick start guide
+## Examples
+
+### Demo
+If the demo is too tall for you, click here.
+
+![Demo](./readme-assets/demo.gif)
+
+### App examples
+Swipeable Widget is used in the following apps:
+- [Shots](https://github.com/themindstorm/Shots)
+- Add your own
+
+## Documentation
 
 ### Installation
 Add `swipeable_widget` to your `pubspec.yaml`:
@@ -49,17 +63,11 @@ dependencies:
     sdk: flutter
 
   # added below
-  swipeable_widget:
+  swipeable_widget: <latest version>
 ```
 
-## Examples
+### Adding to your app
 
-### App examples
-Swipeable Widget is used in the following apps:
-- [Shots](https://github.com/themindstorm/Shots)
-- Add your own
-
-## Documentation
 The swipeable widget has to be placed in a `Stack`, for example:
 
 ```
@@ -73,9 +81,16 @@ Stack(
 )
 ```
 
-In the above example, replace `someChildWidget()` with the widget that can be swiped.
+In the above example, replace `someChildWidget()` with the widget that can be swiped (for example, a playing card-like widget).
 
-### parameters
+### Parameters
+
+<details>
+
+<summary>
+Click to reveal all parameters
+</summary>
+
 #### int `durationMilliseconds`
 The animation duration that dictates
 - How long it takes the widget to move back to the origin
@@ -114,6 +129,22 @@ Not implemented yet.
 
 #### Widget `child` (required)
 The child widget, which will be swipeable.
+
+</details>
+
+
+### Basic example
+```
+SwipeableWidget(
+  // this value requires some trial and error to find
+  // (see limitations in README)
+  outsideScreenHorizontalValue: 8.0,
+
+  child: CardExample(text: "This is card"),
+  onHorizontalSwipe: () => print("Card swiped!"),
+)
+```
+See the Example.
 
 ## Issues and limitation
 ### `outsideScreenHorizontalValue`

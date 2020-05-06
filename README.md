@@ -5,7 +5,7 @@
 
 [![Pub](https://img.shields.io/pub/v/swipeable_widget.svg?style=flat-square)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-![lic](https://img.shields.io/github/license/themindstorm/NextBusSg?style=flat-square)
+![lic](https://img.shields.io/github/license/themindstorm/swipeable_widget?style=flat-square)
 [![BMAC](https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square)](https://www.buymeacoffee.com/themindstorm) 
 
 

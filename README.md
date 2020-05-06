@@ -10,35 +10,10 @@
 
 
 ## Contents
-
-<details>
-<summary>
-Click to reveal the table of contents
-</summary>
-
-- [Contents](#contents)
-- [Examples](#examples)
-  - [Demo](#demo)
-  - [App examples](#app-examples)
-- [Documentation](#documentation)
-  - [Installation](#installation)
-  - [Adding to your app](#adding-to-your-app)
-  - [Parameters](#parameters)
-    - [int `durationMilliseconds`](#int-durationmilliseconds)
-    - [double `sensitivity`](#double-sensitivity)
-    - [double `horizontalThreshold`](#double-horizontalthreshold)
-    - [double `verticalThreshold`](#double-verticalthreshold)
-    - [double `outsideScreenHorizontalValue`](#double-outsidescreenhorizontalvalue)
-    - [double `outsideScreenVerticalValue`](#double-outsidescreenverticalvalue)
-    - [Function `onHorizontalSwipe`](#function-onhorizontalswipe)
-    - [Function`onVerticalSwipe`](#functiononverticalswipe)
-    - [Widget `child` (required)](#widget-child-required)
-  - [Basic example](#basic-example)
-- [Issues and limitation](#issues-and-limitation)
-  - [`outsideScreenHorizontalValue`](#outsidescreenhorizontalvalue)
-- [Other information](#other-information)
-
-</details>
+- [Examples](#Examples)
+- [Documentation](#Documentation)
+- [Issues and limitations](#Issues-and-limitations)
+- [Other information](#Other-information)
 
 ## Examples
 

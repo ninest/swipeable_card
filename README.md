@@ -97,9 +97,9 @@ The animation duration that dictates
 Default value: `120`
 
 #### double `sensitivity`
-The multiplier value for the position of the widget as it's being moved by the finger. Higher values make the swiping of the widget seem more responsive. If you aim to support a wide screen device, a higher sensitivity value is recommended so that the user doesn't have to swipe the widget all the way to the side.
+    The multiplier value for the position of the widget as it's being moved by the finger. Higher values make the swiping of the widget seem more responsive. If you aim to support a wide screen device, a higher sensitivity value is recommended so that the user doesn't have to swipe the widget all the way to the side.
 
-Default value: `2.0`
+   Default value: `2.0`
 
 #### double `horizontalThreshold`
 The position the swipeable widget is moved horizontally for it to be moved away. 

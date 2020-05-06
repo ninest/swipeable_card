@@ -94,22 +94,32 @@ The animation duration that dictates
 - How long it takes the widget to move back to the origin
 - How long it takes for the widget to animate off the screen
 
-Default value: 120
+Default value: `120`
 
 #### double `sensitivity`
 The multiplier value for the position of the widget as it's being moved by the finger. Higher values make the swiping of the widget seem more responsive. If you aim to support a wide screen device, a higher sensitivity value is recommended so that the user doesn't have to swipe the widget all the way to the side.
 
-Default value: 2.0
+Default value: `2.0`
 
 #### double `horizontalThreshold`
 The position the swipeable widget is moved horizontally for it to be moved away. 
 
+Once the widget is moved beyong this theshold, the function `onHorizontalSwipe` is called.
+
 This [diagram in this video](https://youtu.be/g2E7yl3MwMk?t=56) may help you visualize the correct position.
 
-Default value: 0.85
+Default value: `0.85`
 
 #### double `verticalThreshold`
 Not implemented yet.
+
+The position the swipeable is moved vertically for it to be moved away.
+
+Once the widget is moved beyong this theshold, the function `onVerticalSwipe` is called.
+
+This [diagram in this video](https://youtu.be/g2E7yl3MwMk?t=56) may help you visualize the correct position.
+
+No defaults set for this.
 
 #### double `outsideScreenHorizontalValue`
 The position the swipeable should end. If you want the swipeable widget to animate going off screen, this value should be over `1.0`.
@@ -119,11 +129,18 @@ The position the swipeable should end. If you want the swipeable widget to anima
 #### double `outsideScreenVerticalValue`
 Not implemented yet.
 
+No defaults set for this.
+
+**Limitation/Issue**: Finding this value also requires some trial and error. Please make a PR if you know off a better way to animate the widget off screen.
+
+
 #### Function `onHorizontalSwipe`
-The function called when the card is moved to either side. If you're making a card game, this is where you would call the function that calls the next card.
+The function called when the card is moved beyond the `horizontalThreshold` (in terms of Align). If you're making a card game, this is where you would call the function that calls the next card.
 
 #### Function`onVerticalSwipe`
 Not implemented yet.
+
+The function called when the card is moved above or below the vertical `verticalThreshold` (in terms of Align).
 
 #### Widget `child` (required)
 The child widget, which will be swipeable.
@@ -149,4 +166,6 @@ See the Example.
 This value should not be required, as it is found through trial and error. We can remove the requirement of this value once we found a way to properly animate a widget going off screen using `Align`.
 
 ## Other information
-Project start date: 1 May, 2020
+Project start date: 1 May, 2020.
+
+This package was extracted from my app [Shots](https://github.com/themindstorm/Shots). Check it out!

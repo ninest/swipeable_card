@@ -38,8 +38,6 @@ class SwipeableWidget extends StatefulWidget {
   /// the [verticalThreshold]
   final Function onVerticalSwipe;
 
-  // final double height, width;
-
   final Widget child;
 
   @override
@@ -142,7 +140,6 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
 
         // (1)
         if (_alignment.x.abs() > widget.horizontalThreshold) {
-
           // it's swiped to the right side
           if (_alignment.x > widget.horizontalThreshold) {
             _runLeaveScreenAnimation();

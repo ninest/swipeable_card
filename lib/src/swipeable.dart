@@ -134,20 +134,22 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
         There are 2 possibilities:
         1. The card was dragged beyond the horizontalThreshold and should be animated
         out horizontally
-        2. The card was dragged beyond the verticalThreshold and should be animated
+        2. TODO: The card was dragged beyond the verticalThreshold and should be animated
         out vertically
         3. The card was not dragged beyond the threshold (should be animated
         back to the origin)
         */
 
         // (1)
-        if (_alignment.x < -widget.horizontalThreshold ||
-            _alignment.x > widget.horizontalThreshold) {
+        if (_alignment.x.abs() > widget.horizontalThreshold) {
+
+          // it's swiped to the right side
           if (_alignment.x > widget.horizontalThreshold) {
             _runLeaveScreenAnimation();
           }
-          // If it's dragged to the left side, animate it leaving from the left side
+          // it's dragged to the left side
           else {
+            // so animate it leaving from the left side
             _runLeaveScreenAnimation(toLeft: true);
           }
 

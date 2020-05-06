@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CardExample extends StatelessWidget {
-  const CardExample({Key key, this.color = Colors.indigo, this.text = "Card Example"})
-      : super(key: key);
+  const CardExample({
+    Key key,
+    this.color = Colors.indigo,
+    this.text = "Card Example",
+  }) : super(key: key);
   final Color color;
   final String text;
 
@@ -20,7 +23,7 @@ class CardExample extends StatelessWidget {
         border: Border.all(
           width: 7.0,
           color: Colors.transparent.withOpacity(0.3),
-        )
+        ),
       ),
 
       child: Text(

@@ -43,9 +43,7 @@ Click to reveal the table of contents
 ## Examples
 
 ### Demo
-If the demo is too tall for you, click here.
-
-![Demo](./readme-assets/demo.gif)
+<img alt="Demo" src="./readme-assets/demo.gif" height="500">
 
 ### App examples
 Swipeable Widget is used in the following apps:

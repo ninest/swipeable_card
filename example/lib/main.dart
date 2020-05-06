@@ -1,13 +1,22 @@
 import 'package:example/home_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // make it a full screen app
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
     return MaterialApp(
-      home: HomeRoute()
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        // make the background color darker to put the cards in focus!
+        scaffoldBackgroundColor: Color(0xFF111111),
+      ),
+      home: HomeRoute(),
     );
   }
 }

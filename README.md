@@ -102,24 +102,24 @@ Default value: `120`
     Default value: `2.0`
 
 #### double `horizontalThreshold`
-The position the swipeable widget is moved horizontally for it to be moved away. 
+  - The position the swipeable widget is moved horizontally for it to be moved away. 
 
-Once the widget is moved beyong this theshold, the function `onHorizontalSwipe` is called.
+    Once the widget is moved beyong this theshold, the function `onHorizontalSwipe` is called.
 
-This [diagram in this video](https://youtu.be/g2E7yl3MwMk?t=56) may help you visualize the correct position.
+    This [diagram in this video](https://youtu.be/g2E7yl3MwMk?t=56) may help you visualize the correct position.
 
-Default value: `0.85`
+    Default value: `0.85`
 
 #### double `verticalThreshold`
-Not implemented yet.
+  - Not implemented yet.
 
-The position the swipeable is moved vertically for it to be moved away.
+    The position the swipeable is moved vertically for it to be moved away.
 
-Once the widget is moved beyong this theshold, the function `onVerticalSwipe` is called.
+    Once the widget is moved beyong this theshold, the function `onVerticalSwipe` is called.
 
-This [diagram in this video](https://youtu.be/g2E7yl3MwMk?t=56) may help you visualize the correct position.
+    This [diagram in this video](https://youtu.be/g2E7yl3MwMk?t=56) may help you visualize the correct position.
 
-No defaults set for this.
+    No defaults set for this.
 
 #### double `outsideScreenHorizontalValue`
 The position the swipeable should end. If you want the swipeable widget to animate going off screen, this value should be over `1.0`.

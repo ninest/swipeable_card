@@ -60,7 +60,7 @@ Swipeable Widget is used in the following apps:
 - Add your own
 
 ## Documentation
-The swiepable widget has to be placed in a `Stack`, for example:
+The swipeable widget has to be placed in a `Stack`, for example:
 
 ```
 Stack(
@@ -72,6 +72,8 @@ Stack(
   ],
 )
 ```
+
+In the above example, replace `someChildWidget()` with the widget that can be swiped.
 
 ### parameters
 #### int `durationMilliseconds`

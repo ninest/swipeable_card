@@ -90,16 +90,16 @@ Click to reveal all parameters
 </summary>
 
 #### int `durationMilliseconds`
-The animation duration that dictates
-- How long it takes the widget to move back to the origin
-- How long it takes for the widget to animate off the screen
+- The animation duration that dictates
+  - How long it takes the widget to move back to the origin
+  - How long it takes for the widget to animate off the screen
 
-Default value: `120`
+  Default value: `120`
 
 #### double `sensitivity`
   - The multiplier value for the position of the widget as it's being moved by the finger. Higher values make the swiping of the widget seem more responsive. If you aim to support a wide screen device, a higher sensitivity value is recommended so that the user doesn't have to swipe the widget all the way to the side.
 
-    Default value: `2.0`
+  Default value: `2.0`
 
 #### double `horizontalThreshold`
   - The position the swipeable widget is moved horizontally for it to be moved away. 
@@ -122,28 +122,28 @@ Default value: `120`
     No defaults set for this.
 
 #### double `outsideScreenHorizontalValue`
-The position the swipeable should end. If you want the swipeable widget to animate going off screen, this value should be over `1.0`.
+  - The position the swipeable should end. If you want the swipeable widget to animate going off screen, this value should be over `1.0`.
 
-**Limitation/Issue**: Finding this value requires some trial and error. Please make a PR if you know off a better way to animate the widget off screen.
+  **Limitation/Issue**: Finding this value requires some trial and error. Please make a PR if you know off a better way to animate the widget off screen.
 
 #### double `outsideScreenVerticalValue`
-Not implemented yet.
+  - Not implemented yet.
 
-No defaults set for this.
+    No defaults set for this.
 
-**Limitation/Issue**: Finding this value also requires some trial and error. Please make a PR if you know off a better way to animate the widget off screen.
+    **Limitation/Issue**: Finding this value also requires some trial and error. Please make a PR if you know off a better way to animate the widget off screen.
 
 
 #### Function `onHorizontalSwipe`
-The function called when the card is moved beyond the `horizontalThreshold` (in terms of Align). If you're making a card game, this is where you would call the function that calls the next card.
+  - The function called when the card is moved beyond the `horizontalThreshold` (in terms of Align). If you're making a card game, this is where you would call the function that calls the next card.
 
 #### Function`onVerticalSwipe`
-Not implemented yet.
+  - Not implemented yet.
 
-The function called when the card is moved above or below the vertical `verticalThreshold` (in terms of Align).
+    The function called when the card is moved above or below the vertical `verticalThreshold` (in terms of Align).
 
 #### Widget `child` (required)
-The child widget, which will be swipeable.
+  - The child widget, which will be swipeable.
 
 </details>
 

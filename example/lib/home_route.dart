@@ -1,45 +1,60 @@
+import 'package:example/card_example.dart';
 import 'package:flutter/material.dart';
 import 'package:swipeable_widget/swipeable_widget.dart';
 
-class HomeRoute extends StatelessWidget {
+class HomeRoute extends StatefulWidget {
   const HomeRoute({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final double screenHeight = size.height;
-    final double screenWidth = size.width;
-
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          SwipeableWidget(
-            outsideScreenHorizontalValue: 5.0,
-            child: CardExample(
-              
-              width: screenWidth/1.5,
-              height: screenHeight/2,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  _HomeRouteState createState() => _HomeRouteState();
 }
 
-class CardExample extends StatelessWidget {
-  const CardExample({Key key, this.color = Colors.indigo, this.width, this.height})
-      : super(key: key);
-  final Color color;
-  final double width;
-  final double height;
+class _HomeRouteState extends State<HomeRoute> {
+  final List<CardExample> cards = [
+    CardExample(color: Colors.red, text: "First card",),
+    CardExample(color: Colors.blue, text: "Second card",),
+    CardExample(color: Colors.orange),
+    CardExample(color: Colors.indigo),
+    CardExample(color: Colors.green, text: "The next card is the last",),
+    CardExample(color: Colors.purple, text: "This is the last card",),
+  ];
+  int currentCardIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(10.0)),
-        child: Text("123456789"));
+    print(currentCardIndex);
+    print(cards.length);
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          // show next card
+          // if there are no next cards, show nothing
+          if (!(currentCardIndex + 1 >= cards.length))
+            Align(
+              alignment: Alignment.center,
+              child: cards[currentCardIndex + 1],
+            ),
+
+          if (currentCardIndex < cards.length)
+            SwipeableWidget(
+              // this value requires some trial and error to find
+              // (see limitations in README)
+              outsideScreenHorizontalValue: 8.0,
+              child: cards[currentCardIndex],
+              // move to next card when top card is swiped away
+              onHorizontalSwipe: () => setState(() => currentCardIndex++),
+            )
+          else
+            // if the deck is complete, add a button to reset deck
+            Align(
+              alignment: Alignment.center,
+              child: FlatButton(
+                child: Text("Reset deck"),
+                onPressed: () => setState(() => currentCardIndex = 0),
+              ),
+            ),
+        ],
+      ),
+    );
   }
 }

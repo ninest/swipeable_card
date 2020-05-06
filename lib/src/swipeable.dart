@@ -167,12 +167,11 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
             });
 
             // the card has successfully been swiped away, so call the function
-            // widget.onHorizontalSwipe();
+            widget.onHorizontalSwipe();
           });
         } else {
           // (3) The widget has been left down at the finger at a position, so animate
           // it going back to the origin (center)
-          print("back to origin");
           _runBackToOriginAnimation();
         }
       },

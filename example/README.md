@@ -1,16 +1,74 @@
-# example
+# Swipeable Card Example
 
-A new Flutter project.
+## Explanation
+We have a list of containers (the "cards") that we would like the user to swipe. THis beahviour is commonly seen in card games or dating apps.
 
-## Getting Started
+```
+// CardExample is a custom container with a nice border and rounded corners
+final List<CardExample> cards = [
+  CardExample(color: Colors.red, text: "First card"),
+  CardExample(color: Colors.blue, text: "Second card"),
+  CardExample(color: Colors.orange),
+  CardExample(color: Colors.indigo),
+  CardExample(color: Colors.green, text: "The next card is the last"),
+  CardExample(color: Colors.purple, text: "This is the last card"),
+];
+```
 
-This project is a starting point for a Flutter application.
+The user should first see the card "First card", which is red, so the `currentCardIndex` is initialized to `0`.
 
-A few resources to get you started if this is your first Flutter project:
+In the `Scaffold`, we see an `Align` widget with the following children:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```
+// (2)
+if (!(currentCardIndex + 1 >= cards.length))
+  Align(
+    alignment: Alignment.center,
+    child: cards[currentCardIndex + 1],
+  ),
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+// (1)
+if (currentCardIndex < cards.length)
+  SwipeableWidget(
+    outsideScreenHorizontalValue: 8.0,
+    child: cards[currentCardIndex],
+    // move to next card when top card is swiped away
+    onHorizontalSwipe: () => setState(() => currentCardIndex++),
+  )
+
+else
+  // display button to reset deck
+```
+
+### What's going on here?
+
+See the comments in the code for the labels `(1)` and `(2)`.
+
+1. This is the card on top which the user sees. It is a `SwipeableWidget`, so users can interact with it and swipe it away. It's child is the `cards[currentCardIndex]`, so it is the 1st card initially.
+
+2. This is the card **behind** the current card. It is **not** wrapped by the `SwipeableWidget`, so the user cannot interact with it. It is `cards[currentCardIndex + 1]`, so it's the 2nd card initialilly.
+
+As the value of `currentCardIndex`, increases, the card the user sees (1) and card behind that (2) are both increased appropriately.
+
+So when the front card (1) is swiped, `currentCardIndex++` is called. This gives an **appearance** that the card has moved away. What's actually happened is that the `SwipeableWidget` is putting itself back (with the next card) in the center right after it's animated out.
+
+#### What seems to be happening?
+
+This is what the users see:
+
+1. The card is discarded (gone)
+2. Next card comes into focus
+
+#### What actually happens? This is what's going on under the hood.
+
+1. The card is animated out of the screen
+2. After a delay, the card is moved back to the center without any animaton.
+3. Using state management (`setState` in this case) to show the next card.
+
+**In short**, the card behind the one wrapped in `SwipeableWidget` is a dummy card. Try removing it to see what happens!
+
+### What about the `if` statements?
+
+They're just there to prevent the app from erroring when the user has reached the end of the deck. When the user is on the last purple card, they won't see a card behind it. And once this last card is swiped, a button will be shown which resets the deck on press.
+
+By resetting the deck, it just sets `currentCardIndex` to `0`. If you're making a game, you may want to get a new list of cards or randomize the the order of the cards first.

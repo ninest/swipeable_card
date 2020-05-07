@@ -1,7 +1,7 @@
 <!-- omit in toc -->
-# Swipeable Widget (beta)
+# Swipeable Card (beta)
 
-> Add swipeable widget that can be swiped like a card to your app
+> Add a swipeable card widget that can be swiped like a card to your app
 
 [![Pub](https://img.shields.io/pub/v/swipeable_widget.svg?style=flat-square)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)

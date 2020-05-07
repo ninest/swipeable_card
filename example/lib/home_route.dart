@@ -1,6 +1,7 @@
 import 'package:example/card_example.dart';
 import 'package:flutter/material.dart';
-import 'package:swipeable_widget/swipeable_widget.dart';
+import 'package:swipeable_widget/swipeable_card.dart';
+
 
 class HomeRoute extends StatefulWidget {
   const HomeRoute({Key key}) : super(key: key);

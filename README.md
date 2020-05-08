@@ -3,9 +3,9 @@
 
 > Add a swipeable card widget that can be swiped like a card to your app
 
-[![Pub](https://img.shields.io/pub/v/swipeable_widget.svg?style=flat-square)]()
+[![Pub](https://img.shields.io/pub/v/swipeable_card.svg?style=flat-square)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-![lic](https://img.shields.io/github/license/themindstorm/swipeable_widget?style=flat-square)
+![lic](https://img.shields.io/github/license/themindstorm/swipeable_card?style=flat-square)
 [![BMAC](https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square)](https://www.buymeacoffee.com/themindstorm) 
 
 
@@ -28,7 +28,7 @@ Swipeable Widget is used in the following apps:
 ## Documentation
 
 ### Installation
-Add `swipeable_widget` to your `pubspec.yaml`:
+Add `swipeable_card` to your `pubspec.yaml`:
 
 ```
 dependencies:
@@ -36,7 +36,7 @@ dependencies:
     sdk: flutter
 
   # added below
-  swipeable_widget: <latest version>
+  swipeable_card: <latest version>
 ```
 
 ### Adding to your app

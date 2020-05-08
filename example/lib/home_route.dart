@@ -1,7 +1,7 @@
-import 'package:example/card_example.dart';
 import 'package:flutter/material.dart';
-import 'package:swipeable_widget/swipeable_card.dart';
+import 'package:swipeable_card/swipeable_card.dart';
 
+import 'card_example.dart';
 
 class HomeRoute extends StatefulWidget {
   const HomeRoute({Key key}) : super(key: key);
@@ -12,12 +12,24 @@ class HomeRoute extends StatefulWidget {
 
 class _HomeRouteState extends State<HomeRoute> {
   final List<CardExample> cards = [
-    CardExample(color: Colors.red, text: "First card",),
-    CardExample(color: Colors.blue, text: "Second card",),
+    CardExample(
+      color: Colors.red,
+      text: "First card",
+    ),
+    CardExample(
+      color: Colors.blue,
+      text: "Second card",
+    ),
     CardExample(color: Colors.orange),
     CardExample(color: Colors.indigo),
-    CardExample(color: Colors.green, text: "The next card is the last",),
-    CardExample(color: Colors.purple, text: "This is the last card",),
+    CardExample(
+      color: Colors.green,
+      text: "The next card is the last",
+    ),
+    CardExample(
+      color: Colors.purple,
+      text: "This is the last card",
+    ),
   ];
   int currentCardIndex = 0;
 

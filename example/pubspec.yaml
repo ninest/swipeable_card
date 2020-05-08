@@ -1,6 +1,6 @@
 name: example_swipeable_card
 version: 1.0.0
-homepage: https://github.com/themindstorm/swipeable_widget/tree/master/example
+homepage: https://github.com/themindstorm/swipeable_card/tree/master/example
 author: themindstorm
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  swipeable_widget:
+  swipeable_card:
 
 dev_dependencies:
   flutter_test:

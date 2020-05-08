@@ -1,6 +1,7 @@
-import 'package:example/home_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'home_route.dart';
 
 void main() => runApp(MyApp());
 

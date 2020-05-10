@@ -140,7 +140,7 @@ See the Example.
 
 ## Issues and limitation
 ### `outsideScreenHorizontalValue`
-This value should not be required, as it is found through trial and error. We can remove the requirement of this value once we found a way to properly animate a widget going off screen using `Align`.
+This value should not be required, as it is find through trial and error. We can remove the requirement of this value once we found a way to properly animate a widget going off screen using `Align`.
 
 ## Other information
 Project start date: 1 May, 2020.

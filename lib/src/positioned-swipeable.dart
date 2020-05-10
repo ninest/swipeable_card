@@ -43,7 +43,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
 
           // multipliers for swipe sensitivity
           double ys = details.delta.dy;
-          double xs = details.delta.dx;
+          // double xs = details.delta.dx;
 
           print(ys);
 

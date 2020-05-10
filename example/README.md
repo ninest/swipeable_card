@@ -37,7 +37,8 @@ if (currentCardIndex < cards.length)
   )
 
 else
-  // display button to reset deck
+  // display button to "reset deck" 
+  // (the widget here will only show when current card index is equal to the length of cards list)
 ```
 
 ### What's going on here?

@@ -18,8 +18,7 @@
 ## Examples
 
 ### Demo
-<img alt="Demo" src="./readme-assets/demo-1.gif" height="500">
-<img alt="Demo" src="./readme-assets/demo-2.gif" height="500">
+<img alt="Demo" src="./readme-assets/demo-1.gif" height="500"> <img alt="Demo" src="./readme-assets/demo-2.gif" height="500">
 
 ### App examples
 Swipeable Widget is used in the following apps:

@@ -108,7 +108,7 @@ Once again, some trial and error is required to correctly set the value of `outs
 
 Once you have set the above modified `SwipeableWidget`, run the example and try swiping the card to the top and bottom!
 
-## Automatically swiping cards (without user interaction) (see `controller_example_route.dart`)
+## Automatically swiping cards (without user manually swiping) (see `controller_example_route.dart`)
 
 Check out `controller_example_route.dart`. First, go to `main.dart` and set the child of `MaterialApp` to `ControllerExampleRoute`:
 

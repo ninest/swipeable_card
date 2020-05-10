@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
         // make the background color darker to put the cards in focus!
         scaffoldBackgroundColor: Color(0xFF111111),
       ),
-      home: ExampleRoute(),
-      // home: ControllerExampleRoute(),
+      // home: ExampleRoute(),
+      home: ControllerExampleRoute(),
     );
   }
 }

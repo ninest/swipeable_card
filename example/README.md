@@ -1,7 +1,7 @@
 # Swipeable Card Example
 
 ## Explanation
-We have a list of containers (the "cards") that we would like the user to swipe. THis beahviour is commonly seen in card games or dating apps.
+We have a list of containers (the "cards") that we would like the user to swipe. This beahviour is commonly seen in card games or dating apps.
 
 ```
 // CardExample is a custom container with a nice border and rounded corners
@@ -72,3 +72,37 @@ This is what the users see:
 They're just there to prevent the app from erroring when the user has reached the end of the deck. When the user is on the last purple card, they won't see a card behind it. And once this last card is swiped, a button will be shown which resets the deck on press.
 
 By resetting the deck, it just sets `currentCardIndex` to `0`. If you're making a game, you may want to get a new list of cards or randomize the the order of the cards first.
+
+## I want to swipe the cards to the top and bottom too
+
+Make use of the following properties:
+- `enableVerticalSwiping`
+- `outsideScreenVerticalValue`
+- `onVerticalSwipe`
+
+### Example
+
+Replace the `SwipeableWidget( ... )` from `home_route.dart` to
+
+```
+SwipeableWidget(
+  // add this
+  enableVerticalSwiping: true,
+
+  outsideScreenHorizontalValue: 8.0,
+
+  // add this
+  outsideScreenVerticalValue: 8.0,
+
+  child: cards[currentCardIndex],
+
+  onHorizontalSwipe: () => setState(() => currentCardIndex++),
+
+  // add this
+  onVerticalSwipe: () => setState(() => currentCardIndex++),
+)
+```
+
+Once again, some trial and error is required to correctly set the value of `outsideScreenVerticalValue`. You may specify a different function that executes when the card is swiped away vertically.
+
+Once you have set the above modified `SwipeableWidget`, run the example and try swiping the card to the top and bottom!

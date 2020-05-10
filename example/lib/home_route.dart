@@ -12,24 +12,12 @@ class HomeRoute extends StatefulWidget {
 
 class _HomeRouteState extends State<HomeRoute> {
   final List<CardExample> cards = [
-    CardExample(
-      color: Colors.red,
-      text: "First card",
-    ),
-    CardExample(
-      color: Colors.blue,
-      text: "Second card",
-    ),
+    CardExample(color: Colors.red, text: "First card"),
+    CardExample(color: Colors.blue, text: "Second card"),
     CardExample(color: Colors.orange),
     CardExample(color: Colors.indigo),
-    CardExample(
-      color: Colors.green,
-      text: "The next card is the last",
-    ),
-    CardExample(
-      color: Colors.purple,
-      text: "This is the last card",
-    ),
+    CardExample(color: Colors.green, text: "The next card is the last"),
+    CardExample(color: Colors.purple, text: "This is the last card"),
   ];
   int currentCardIndex = 0;
 
@@ -53,9 +41,12 @@ class _HomeRouteState extends State<HomeRoute> {
               // this value requires some trial and error to find
               // (see limitations in README)
               outsideScreenHorizontalValue: 8.0,
+              outsideScreenVerticalValue: 8.0,
+              enableVerticalSwiping: true,
               child: cards[currentCardIndex],
               // move to next card when top card is swiped away
               onHorizontalSwipe: () => setState(() => currentCardIndex++),
+              onVerticalSwipe: () => setState(() => currentCardIndex++),
             )
           else
             // if the deck is complete, add a button to reset deck

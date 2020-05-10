@@ -5,12 +5,13 @@ class SwipeableWidget extends StatefulWidget {
     Key key,
     this.durationMilliseconds = 120,
     this.sensitivity = 2.0,
-    this.horizontalThreshold = 0.85,
     this.outsideScreenHorizontalValue,
+    this.enableVerticalSwiping = false,
+    this.outsideScreenVerticalValue,
+    this.horizontalThreshold = 0.85,
+    this.verticalThreshold = 0.90,
     this.onHorizontalSwipe,
     this.onVerticalSwipe,
-    // this.height,
-    // this.width,
     @required this.child,
   }) : super(key: key);
 
@@ -22,13 +23,23 @@ class SwipeableWidget extends StatefulWidget {
   /// while higher values will be better for larger screens
   final double sensitivity;
 
+
+  /// Whether to enable swiping cards vertically
+  final bool enableVerticalSwiping;
+
   /// This is pretty much a trial and error value. It's the x value for Align
   /// for the child that signifies a position beyond the screen
   final double outsideScreenHorizontalValue;
 
+  /// The y value for Align for the child that signified a position
+  /// beyond the screen
+  final double outsideScreenVerticalValue;
+
   /// Defines an x (horizontal axis) value for alignment. If the widget is dragged
   /// beyond the [horizontalThreshold], it will be animated out
   final double horizontalThreshold;
+
+  final double verticalThreshold;
 
   /// Function called when the widget is swiped then animated beyond
   /// the [horizontalThreshold]
@@ -88,10 +99,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
 
   /// Animating the card outside the screen.
   /// [toLeft] is true when the card is to be animated leaving to the left
-  void _runLeaveScreenAnimation({bool toLeft = false}) {
-    // The below values were found through trial and error on an Android device
-    // and iPhone. These may require additional tweaking
-
+  void _runLeaveScreenAnimationHorizontal({bool toLeft = false}) {
     // Interpolation out of the screen (either left side or right side)
     _animation = _controller.drive(AlignmentTween(
       begin: _alignment,
@@ -101,6 +109,21 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
           // Make it go a little lower to make it look more natural
           _alignment.y + 0.2),
     ));
+
+    _controller.reset();
+    _controller.forward();
+  }
+
+  void _runLeaveScreenAnimationVertical({bool toBottom = false}) {
+    _animation = _controller.drive(
+      AlignmentTween(
+        begin: _alignment,
+        end: Alignment(
+          _alignment.x,
+          toBottom ? -widget.outsideScreenVerticalValue : widget.outsideScreenVerticalValue,
+        ),
+      ),
+    );
 
     _controller.reset();
     _controller.forward();
@@ -142,16 +165,30 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
         if (_alignment.x.abs() > widget.horizontalThreshold) {
           // it's swiped to the right side
           if (_alignment.x > widget.horizontalThreshold) {
-            _runLeaveScreenAnimation();
+            _runLeaveScreenAnimationHorizontal();
           }
           // it's dragged to the left side
           else {
             // so animate it leaving from the left side
-            _runLeaveScreenAnimation(toLeft: true);
+            _runLeaveScreenAnimationHorizontal(toLeft: true);
           }
 
           // this moves the card to the origin with no animation
           _cardToOrigin(then: () => widget.onHorizontalSwipe());
+
+          // (2)
+        } else if (widget.enableVerticalSwiping && _alignment.y.abs() > widget.verticalThreshold) {
+          print("Dismissing vertically!");
+          // it's swiped to the top
+          if (_alignment.y > widget.verticalThreshold) {
+            _runLeaveScreenAnimationVertical();
+          }
+          // it's dragged to the bottom
+          else {
+            _runLeaveScreenAnimationVertical(toBottom: true);
+          }
+          // this moves the card to the origin with no animation
+          _cardToOrigin(then: () => widget.onVerticalSwipe());
         } else {
           // (3) The widget has been left down at the finger at a position, so
           // animate it going back to the origin (center)

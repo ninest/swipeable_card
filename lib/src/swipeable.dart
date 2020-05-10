@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:swipeable_card/src/swipeable_widget_controller.dart';
 
 class SwipeableWidget extends StatefulWidget {
   SwipeableWidget({
     Key key,
+    this.swipeableWidgetController,
     this.durationMilliseconds = 120,
     this.sensitivity = 2.0,
 
@@ -22,6 +24,8 @@ class SwipeableWidget extends StatefulWidget {
     this.onVerticalSwipe,
     @required this.child,
   }) : super(key: key);
+
+  final SwipeableWidgetController swipeableWidgetController;
 
   /// How long it takes for the swipeable widget to go back to its original
   /// position or be swiped away
@@ -63,7 +67,8 @@ class SwipeableWidget extends StatefulWidget {
   _SwipeableWidgetState createState() => _SwipeableWidgetState();
 }
 
-class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProviderStateMixin {
+class _SwipeableWidgetState extends State<SwipeableWidget>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   // Holds the current alignment of the swipeable widget
@@ -114,7 +119,9 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
         begin: _alignment,
         end: Alignment(
           // Make it go to the left is specified
-          toLeft ? -widget.outsideScreenHorizontalValue : widget.outsideScreenHorizontalValue,
+          toLeft
+              ? -widget.outsideScreenHorizontalValue
+              : widget.outsideScreenHorizontalValue,
           // Make it go a little lower to make it look more natural
           _alignment.y + 0.2,
         ),
@@ -126,12 +133,15 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
   }
 
   void _runLeaveScreenAnimationVertical({bool toBottom = false}) {
+    print('tobottom? $toBottom');
     _animation = _controller.drive(
       AlignmentTween(
         begin: _alignment,
         end: Alignment(
           _alignment.x,
-          toBottom ? -widget.outsideScreenVerticalValue : widget.outsideScreenVerticalValue,
+          toBottom
+              ? widget.outsideScreenVerticalValue
+              : -widget.outsideScreenVerticalValue,
         ),
       ),
     );
@@ -142,6 +152,28 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
+    // controller isn't necessary
+    widget.swipeableWidgetController?.setListener((swipeTrigger) {
+      switch (swipeTrigger) {
+        // swipe trigger can be one of the values of [SwipeableDirection]
+        case SwipeableDirection.horizontalLeft:
+          _dismissHorizontally(toLeft: true);
+          break;
+
+        case SwipeableDirection.horizontalRight:
+          _dismissHorizontally(toRight: true);
+          break;
+
+        case SwipeableDirection.verticalTop:
+          _dismissVertically(toTop: true);
+          break;
+
+        case SwipeableDirection.verticalBottom:
+          _dismissVertically(toBottom: true);
+          break;
+      }
+    });
+
     // To get the child widget's width and height
     final size = MediaQuery.of(context).size;
 
@@ -221,14 +253,25 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
 
   /// Animate the card swiping away horizontally and execute the function
   /// [onHorizontalSwipe]
-  void _dismissHorizontally() {
-    if (_alignment.x > widget.horizontalThreshold) {
-      _runLeaveScreenAnimationHorizontal();
-    }
-    // it's dragged to the left side
-    else {
-      // so animate it leaving from the left side
+  /// Either [toLeft] or [toRight] are only required if the widget is being
+  /// animated with the controller (without a swipe)
+  /// This is because _alignment.x is available to tell us if we
+  void _dismissHorizontally({bool toLeft = false, bool toRight = false}) {
+    // below is executed when card is being swiped automatically (with controller)
+    if (toLeft)
       _runLeaveScreenAnimationHorizontal(toLeft: true);
+    else if (toRight)
+      _runLeaveScreenAnimationHorizontal();
+    else {
+      // below is executed when none (toLeft nor roRight) are provided
+      if (_alignment.x > widget.horizontalThreshold) {
+        _runLeaveScreenAnimationHorizontal();
+      }
+      // it's dragged to the left side
+      else {
+        // so animate it leaving from the left side
+        _runLeaveScreenAnimationHorizontal(toLeft: true);
+      }
     }
 
     // this moves the card to the origin with no animation
@@ -237,13 +280,23 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
 
   /// Animate the card swiping away horizontally and execute the function
   /// [onVerticalSwipe]
-  void _dismissVertically() {
-    if (_alignment.y > widget.verticalThreshold) {
+  /// /// Either [toTop] or [toBottom] are only required if the widget is being
+  /// animated with the controller (without a swipe
+  void _dismissVertically({bool toTop = false, bool toBottom = false}) {
+    // below is executed when card is being swiped automatically (with controller)
+    if (toTop)
       _runLeaveScreenAnimationVertical();
-    }
-    // it's dragged to the bottom
-    else {
+    else if (toBottom)
       _runLeaveScreenAnimationVertical(toBottom: true);
+    else {
+      // below is executed when none (toTop nor toBottom) are provided
+      if (_alignment.y < widget.verticalThreshold) {
+        _runLeaveScreenAnimationVertical();
+      }
+      // it's dragged to the bottom
+      else {
+        _runLeaveScreenAnimationVertical(toBottom: true);
+      }
     }
     // this moves the card to the origin with no animation
     _cardToOrigin(then: () => widget.onVerticalSwipe());

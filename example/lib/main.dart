@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'home_route.dart';
+import 'example_route.dart';
+import 'controller_example_route.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         // make the background color darker to put the cards in focus!
         scaffoldBackgroundColor: Color(0xFF111111),
       ),
-      home: HomeRoute(),
+      home: ExampleRoute(),
+      // home: ControllerExampleRoute(),
     );
   }
 }

@@ -1,6 +1,6 @@
 # Swipeable Card Example
 
-## Explanation
+## Explanation (see `example_route.dart`)
 We have a list of containers (the "cards") that we would like the user to swipe. This beahviour is commonly seen in card games or dating apps.
 
 ```
@@ -107,6 +107,30 @@ SwipeableWidget(
 Once again, some trial and error is required to correctly set the value of `outsideScreenVerticalValue`. You may specify a different function that executes when the card is swiped away vertically.
 
 Once you have set the above modified `SwipeableWidget`, run the example and try swiping the card to the top and bottom!
+
+## Automatically swiping cards (without user interaction) (see `controller_example_route.dart`)
+
+Check out `controller_example_route.dart`. First, go to `main.dart` and set the child of `MaterialApp` to `ControllerExampleRoute`:
+
+```
+return MaterialApp(
+  ...
+  home: ControllerExampleRoute(),
+);
+```
+
+Run the app and use the buttons at the bottom of the screen to swipe cards.
+
+For example, to swipe the card to the left, tap the "left" button: 
+
+```
+FlatButton(
+  child: Text("left"),
+
+  // The below function automatically swipes the card
+  onPressed: () => _swc.triggerHorizontalSwipeLeft(),
+),
+```
 
 ## Improvements you can make
 ### 1. Make cards look more natural

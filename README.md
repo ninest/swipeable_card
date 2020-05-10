@@ -141,7 +141,7 @@ SwipeableWidget(
   onHorizontalSwipe: () => print("Card swiped!"),
 )
 ```
-See the Example.
+See the Example for more details.
 
 ## Issues and limitation
 ### `outsideScreenHorizontalValue`

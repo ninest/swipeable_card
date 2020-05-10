@@ -130,10 +130,10 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
       onPanEnd: (DragEndDetails details) {
         /*
         There are 2 possibilities:
-        1. The card was dragged beyond the horizontalThreshold and should be animated
-        out horizontally
-        2. TODO: The card was dragged beyond the verticalThreshold and should be animated
-        out vertically
+        1. The card was dragged beyond the horizontalThreshold and should be
+        animated out horizontally
+        2. TODO: The card was dragged beyond the verticalThreshold and should 
+        be animated out vertically
         3. The card was not dragged beyond the threshold (should be animated
         back to the origin)
         */
@@ -150,27 +150,11 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
             _runLeaveScreenAnimation(toLeft: true);
           }
 
-          /* 
-          We need to wait for the animation to finish. Only then we should execute the
-          [onSwipeSide] function.
-          That's why the duration of the future.delayed is higher. We need to wait for the
-          animation to complete fully
-          */
-
-          Future.delayed(Duration(milliseconds: widget.durationMilliseconds + 150)).then((_) {
-            // Move the widget (child) back to the center without animation, giving the appearance
-            // that the next widget "in line" has come to the top
-            // It is expected that the child of this widget is being changed through state management
-            setState(() {
-              _alignment = Alignment.center;
-            });
-
-            // the card has successfully been swiped away, so call the function
-            widget.onHorizontalSwipe();
-          });
+          // this moves the card to the origin with no animation
+          _cardToOrigin(then: () => widget.onHorizontalSwipe());
         } else {
-          // (3) The widget has been left down at the finger at a position, so animate
-          // it going back to the origin (center)
+          // (3) The widget has been left down at the finger at a position, so
+          // animate it going back to the origin (center)
           _runBackToOriginAnimation();
         }
       },
@@ -179,5 +163,30 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
         child: widget.child,
       ),
     );
+  }
+
+  /// [then] is called after the card has moved back to the center
+  /// It is the function to execute once a card has been swiped away
+  void _cardToOrigin({@required Function then}) {
+    /* 
+    We need to wait for the animation to finish. Only then we should 
+    execute the [onSwipeSide] function.
+    That's why the duration of the future.delayed is higher. We need to 
+    wait for the animation to complete fully
+    */
+
+    Future.delayed(Duration(milliseconds: widget.durationMilliseconds + 150)).then((_) {
+      // Move the widget (child) back to the center without animation,
+      // giving the appearance that the next widget "in line" has come to
+      // the top
+      // It is expected that the child of this widget is being changed
+      // through state management
+      setState(() {
+        _alignment = Alignment.center;
+      });
+
+      // the card has successfully been swiped away, so call the function
+      then();
+    });
   }
 }

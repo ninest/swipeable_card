@@ -20,6 +20,8 @@
 ### Demo
 <img alt="Demo" src="./readme-assets/demo.gif" height="500">
 
+Not shown in example: swiping and dismissing cards vertically (top and bottom).
+
 ### App examples
 Swipeable Widget is used in the following apps:
 - [Shots](https://github.com/themindstorm/Shots)

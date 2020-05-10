@@ -107,3 +107,10 @@ SwipeableWidget(
 Once again, some trial and error is required to correctly set the value of `outsideScreenVerticalValue`. You may specify a different function that executes when the card is swiped away vertically.
 
 Once you have set the above modified `SwipeableWidget`, run the example and try swiping the card to the top and bottom!
+
+## Improvements you can make
+### 1. Make cards look more natural
+To do this, you can use the `Tranform` widgets to rotate the cards by a randomly generated angle, or even change the offset.
+
+### 2. Disable users from swiping cards
+If you do need to disable a card, wrap `SwipeableWidget` with `IgnorePointed`. Check out [this video](https://www.youtube.com/watch?v=qV9pqHWxYgI) for more information.

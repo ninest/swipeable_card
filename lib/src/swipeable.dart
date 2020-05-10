@@ -109,14 +109,17 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
   /// [toLeft] is true when the card is to be animated leaving to the left
   void _runLeaveScreenAnimationHorizontal({bool toLeft = false}) {
     // Interpolation out of the screen (either left side or right side)
-    _animation = _controller.drive(AlignmentTween(
-      begin: _alignment,
-      end: Alignment(
+    _animation = _controller.drive(
+      AlignmentTween(
+        begin: _alignment,
+        end: Alignment(
           // Make it go to the left is specified
           toLeft ? -widget.outsideScreenHorizontalValue : widget.outsideScreenHorizontalValue,
           // Make it go a little lower to make it look more natural
-          _alignment.y + 0.2),
-    ));
+          _alignment.y + 0.2,
+        ),
+      ),
+    );
 
     _controller.reset();
     _controller.forward();

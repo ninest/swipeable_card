@@ -143,7 +143,7 @@ SwipeableWidget(
 ```
 See the Example for more details.
 
-## Issues and limitation
+## Issues and limitations
 ### `outsideScreenHorizontalValue`
 This value should not be required, as it is find through trial and error. We can remove the requirement of this value once we found a way to properly animate a widget going off screen using `Align`.
 

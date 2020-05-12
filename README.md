@@ -15,7 +15,7 @@
 - [Issues and limitations](#Issues-and-limitations)
 - [Other information](#Other-information)
 
-## Examples
+## 🎮 Examples
 
 ### Demo
 <img alt="Demo 1" src="./readme-assets/demo-1.gif" height="500"> <img alt="Demo 2" src="./readme-assets/demo-2.gif" height="500">
@@ -27,7 +27,7 @@ Swipeable Widget is used in the following apps:
 - [Shots](https://github.com/ninest/Shots)
 - Create a PR to add your own!
 
-## Documentation
+## 📒 Documentation
 
 ### Installation
 Add `swipeable_card` to your `pubspec.yaml`:
@@ -143,11 +143,11 @@ SwipeableWidget(
 ```
 See the [Example](https://github.com/ninest/swipeable_card/tree/master/example) for more details. It contains a detailed write up on how to use the swipeable widget controller too.
 
-## Issues and limitations
+## 😐 Issues and limitations
 ### `outsideScreenHorizontalValue`
 This value should not be required, as it is find through trial and error. We can remove the requirement of this value once we found a way to properly animate a widget going off screen using `Align`.
 
-## Other information
+## 📝 Other information
 Project start date: 1 May, 2020.
 
 <!-- This package was extracted from my app [Shots](https://github.com/themindstorm/Shots). Check it out! -->

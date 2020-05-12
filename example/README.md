@@ -137,4 +137,4 @@ FlatButton(
 To do this, you can use the `Tranform` widgets to rotate the cards by a randomly generated angle, or even change the offset.
 
 ### 2. Disable users from swiping cards
-If you do need to disable a card, wrap `SwipeableWidget` with `IgnorePointed`. Check out [this video](https://www.youtube.com/watch?v=qV9pqHWxYgI) for more information.
+If you do need to disable a card, wrap `SwipeableWidget` with `IgnorePointer`. Check out [this video](https://www.youtube.com/watch?v=qV9pqHWxYgI) for more information.

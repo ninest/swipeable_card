@@ -1,6 +1,6 @@
 name: swipeable_card
 description: Add swipeable card-like widgets for games or interactive onboarding screens
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/ninest/swipeable_card
 
 environment:

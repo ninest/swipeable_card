@@ -236,7 +236,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
     wait for the animation to complete fully
     */
 
-    Future.delayed(Duration(milliseconds: widget.durationMilliseconds + 150)).then((_) {
+    Future.delayed(Duration(milliseconds: widget.durationMilliseconds + 150))
+        .then((_) {
       // Move the widget (child) back to the center without animation,
       // giving the appearance that the next widget "in line" has come to
       // the top

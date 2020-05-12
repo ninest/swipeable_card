@@ -8,7 +8,8 @@ help to anyone.
 import 'package:flutter/material.dart';
 
 class SwipeableWidget extends StatefulWidget {
-  SwipeableWidget({Key key, this.child, this.width, this.height}) : super(key: key);
+  SwipeableWidget({Key key, this.child, this.width, this.height})
+      : super(key: key);
   final double width;
   final double height;
   final Widget child;

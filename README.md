@@ -22,8 +22,8 @@
 
 ### App examples
 Swipeable Widget is used in the following apps:
-- [Shots](https://github.com/themindstorm/Shots)
-- Add your own
+- [Shots](https://github.com/ninest/Shots)
+- Create a PR to add your own!
 
 ## Documentation
 

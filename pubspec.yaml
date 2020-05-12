@@ -1,8 +1,7 @@
 name: swipeable_card
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/ninest/swipeable_card
 
 environment:
   sdk: ">=2.6.0 <3.0.0"

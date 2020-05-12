@@ -20,6 +20,8 @@
 ### Demo
 <img alt="Demo 1" src="https://cdn.jsdelivr.net/gh/ninest/swipeable_card/readme-assets/demo-1.gif" height="500"> <img alt="Demo 2" src="https://cdn.jsdelivr.net/gh/ninest/swipeable_card/readme-assets/demo-2.gif" height="500">
 
+Check to [repository](https://github.com/ninest/swipeable_card) if you're unable to see the demo.
+
 ### App examples
 Swipeable Widget is used in the following apps:
 - [Shots](https://github.com/ninest/Shots)

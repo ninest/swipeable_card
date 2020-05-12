@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Swipeable Card (beta)
 
-> Add a swipeable card widget that can be swiped like a card to your app
+**Add swipeable card-like widgets for games or interactive onboarding screens**
 
 [![Pub](https://img.shields.io/pub/v/swipeable_card.svg?style=flat-square)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)

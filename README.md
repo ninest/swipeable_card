@@ -148,4 +148,4 @@ This value should not be required, as it is find through trial and error. We can
 ## Other information
 Project start date: 1 May, 2020.
 
-This package was extracted from my app [Shots](https://github.com/themindstorm/Shots). Check it out!
+<!-- This package was extracted from my app [Shots](https://github.com/themindstorm/Shots). Check it out! -->

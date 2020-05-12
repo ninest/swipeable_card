@@ -139,7 +139,7 @@ SwipeableWidget(
   onHorizontalSwipe: () => print("Card swiped!"),
 )
 ```
-See the Example for more details.
+See the [Example](https://github.com/ninest/swipeable_card/tree/master/example) for more details. It contains a detailed write up on how to use the swipeable widget controller too.
 
 ## Issues and limitations
 ### `outsideScreenHorizontalValue`

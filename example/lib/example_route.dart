@@ -32,7 +32,7 @@ class _ExampleRouteState extends State<ExampleRoute> {
             if (currentCardIndex < cards.length)
               SwipeableWidget(
                 cardController: _cardController,
-                animationDuration: 700,
+                animationDuration: 500,
                 horizontalThreshold: 0.85,
                 child: cards[currentCardIndex],
                 nextCards: <Widget>[
@@ -50,15 +50,16 @@ class _ExampleRouteState extends State<ExampleRoute> {
             else
               // if the deck is complete, add a button to reset deck
               Center(
-                child: Container(
-                  margin: EdgeInsets.only(top: 100.0),
-                  child: FlatButton(
-                    child: Text("Reset deck"),
-                    onPressed: () => setState(() => currentCardIndex = 0),
-                  ),
+                child: FlatButton(
+                  child: Text("Reset deck"),
+                  onPressed: () => setState(() => currentCardIndex = 0),
                 ),
               ),
-            cardController(_cardController),
+
+            // only show the card controlling buttons when there are cards
+            // otherwise, just hide it
+            if (currentCardIndex < cards.length)
+              cardController(_cardController),
           ],
         ),
       ),

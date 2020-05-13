@@ -139,8 +139,8 @@ SwipeableWidget(
 See the [Example](https://github.com/ninest/swipeable_card/tree/master/example) for more details. It contains a detailed write up on how to use the swipeable widget controller too.
 
 ## 😐 Issues and limitations
-### `outsideScreenHorizontalValue`
-This value should not be required, as it is find through trial and error. We can remove the requirement of this value once we found a way to properly animate a widget going off screen using `Align`.
+
+As of now, there's no animation to bring cards back to the origin if they should not be dismissed. We're hopinh to fix this before the v1.0.0 release.
 
 ## 📝 Other information
 Project start date: 1 May, 2020.

@@ -25,17 +25,40 @@ class _ExampleRouteState extends State<ExampleRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          SwipeableWidget(
-            animationDuration: 700,
-            child: cards[currentCardIndex],
-            nextCards: <Widget>[
-              Align(
-                alignment: Alignment.center,
-                child: cards[currentCardIndex + 1],
+          if (currentCardIndex < cards.length)
+            SwipeableWidget(
+              animationDuration: 700,
+              horizontalThreshold: 0.85,
+              initialAlignment: Alignment.center,
+              child: cards[currentCardIndex],
+              nextCards: <Widget>[
+                // show next card
+                // if there are no next cards, show nothing
+                if (!(currentCardIndex + 1 >= cards.length))
+                  Align(
+                    alignment: Alignment.center,
+                    child: cards[currentCardIndex + 1],
+                  ),
+              ],
+              onHorizontalSwipe: () {
+                setState(() {
+                  currentCardIndex++;
+                });
+              },
+            )
+          else
+            // if the deck is complete, add a button to reset deck
+            Center(
+              child: Container(
+                margin: EdgeInsets.only(top: 100.0),
+                child: FlatButton(
+                  child: Text("Reset deck"),
+                  onPressed: () => setState(() => currentCardIndex = 0),
+                ),
               ),
-            ],
-          ),
+            ),
         ],
       ),
       // body: Stack(

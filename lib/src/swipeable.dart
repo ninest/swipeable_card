@@ -5,6 +5,8 @@ class SwipeableWidget extends StatefulWidget {
     Key key,
     this.animationDuration = 700,
     this.horizontalThreshold = 3.0,
+    this.onHorizontalSwipe,
+    this.initialAlignment = Alignment.center,
     @required this.child,
     this.nextCards,
   }) : super(key: key);
@@ -12,6 +14,10 @@ class SwipeableWidget extends StatefulWidget {
   final int animationDuration;
 
   final double horizontalThreshold;
+
+  final Function onHorizontalSwipe;
+
+  final Alignment initialAlignment;
 
   /// The child widget, which is swipeable
   final Widget child;
@@ -42,11 +48,12 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
         setState(() {
           _childAlign = Alignment.center;
         });
+        widget.onHorizontalSwipe();
       }
     });
 
     // card alignment
-    _childAlign = Alignment.center;
+    _childAlign = widget.initialAlignment;
   }
 
   @override
@@ -77,7 +84,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
                           animateCard();
                         } else {
                           setState(() {
-                            _childAlign = Alignment.center;
+                            _childAlign = widget.initialAlignment;
                           });
                         }
                       },

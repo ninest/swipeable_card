@@ -39,6 +39,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
   AnimationController _controller;
   Alignment _childAlign;
 
+  // stores the direction in which the card is being dismissed
   Direction _dir;
 
   @override
@@ -74,32 +75,29 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
           child(),
           _controller.status != AnimationStatus.forward
               ? SizedBox.expand(
-                  child: Container(
-                    // color: Colors.green,
-                    child: GestureDetector(
-                      onPanUpdate: (DragUpdateDetails details) {
-                        final screenWidth = MediaQuery.of(context).size.width;
-                        final screenHeight = MediaQuery.of(context).size.height;
-                        setState(() {
-                          _childAlign = Alignment(
-                            _childAlign.x + 8 * details.delta.dx / screenWidth,
-                            _childAlign.y + 10 * details.delta.dy / screenHeight,
-                          );
-                        });
-                      },
-                      onPanEnd: (_) {
-                        // _showGoBackToOrigin = false;
-                        if (_childAlign.x > widget.horizontalThreshold)
-                          animateCardLeaving(Direction.right);
-                        else if (_childAlign.x < -widget.horizontalThreshold)
-                          animateCardLeaving(Direction.left);
-                        else {
-                          setState(() {
-                            _childAlign = widget.initialAlignment;
-                          });
-                        }
-                      },
-                    ),
+                  child: GestureDetector(
+                    onPanUpdate: (DragUpdateDetails details) {
+                      final screenWidth = MediaQuery.of(context).size.width;
+                      final screenHeight = MediaQuery.of(context).size.height;
+                      setState(() {
+                        _childAlign = Alignment(
+                          _childAlign.x + 8 * details.delta.dx / screenWidth,
+                          _childAlign.y + 10 * details.delta.dy / screenHeight,
+                        );
+                      });
+                    },
+                    onPanEnd: (_) {
+                      if (_childAlign.x > widget.horizontalThreshold)
+                        animateCardLeaving(Direction.right);
+                      else if (_childAlign.x < -widget.horizontalThreshold)
+                        animateCardLeaving(Direction.left);
+                      else {
+                        animateCardLeaving(null);
+                        // setState(() {
+                        //   _childAlign = widget.initialAlignment;
+                        // });
+                      }
+                    },
                   ),
                 )
               : Container(),

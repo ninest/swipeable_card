@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swipeable_card/src/swipeable_widget_controller.dart';
 
 Animation<Alignment> cardDismissAlignmentAnimation(
-    AnimationController controller, Alignment startAlign, Direction dir) {
+    AnimationController controller, Alignment startAlign, Direction dir, ) {
   double x, y;
   // find direction it's being disissed
   if (dir == Direction.right || startAlign.x > 0) {
@@ -17,6 +17,12 @@ Animation<Alignment> cardDismissAlignmentAnimation(
     // TODO: implement top and bottom
     x = startAlign.x + 15.0;
     y = startAlign.y + 0.2;
+  }
+
+  if (dir == null) {
+// null means go back to origin
+    x = 0.0;
+    y = 0.0;
   }
 
   return AlignmentTween(

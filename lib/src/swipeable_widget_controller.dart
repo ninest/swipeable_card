@@ -3,15 +3,15 @@ typedef TriggerListener = void Function(Direction dir);
 class SwipeableWidgetController {
   TriggerListener _listener;
 
-  void triggerHorizontalSwipeLeft() =>
+  void triggerSwipeLeft() =>
       _listener(Direction.left);
 
-  void triggerHorizontalSwipeRight() =>
+  void triggerSwipeRight() =>
       _listener(Direction.right);
 
-  void triggerVerticalSwipeTop() => _listener(Direction.top);
+  void triggerSwipeTop() => _listener(Direction.top);
 
-  void triggerVerticalSwipeBottom() =>
+  void triggerBottom() =>
       _listener(Direction.bottom);
 
   void setListener(listener) => _listener = listener;

@@ -71,11 +71,11 @@ class _ExampleRouteState extends State<ExampleRoute> {
             ),
           RaisedButton(
             child: Text("Left"),
-            onPressed: () => _swc.triggerHorizontalSwipeLeft(),
+            onPressed: () => _swc.triggerSwipeLeft(),
           ),
           RaisedButton(
             child: Text("Right"),
-            onPressed: () => _swc.triggerHorizontalSwipeRight(),
+            onPressed: () => _swc.triggerSwipeRight(),
           ),
         ],
       ),

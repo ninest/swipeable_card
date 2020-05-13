@@ -1,5 +1,11 @@
 # Swipeable Card Example
 
+**WARNING: THIS IS OUTDATED AS OF v1.0.0**
+
+But it works for v0.0.2. I recommend waiting until the 1.0.0 release.
+
+**IT WILL BE UPDATED SOON**
+
 ## Explanation (see `example_route.dart`)
 We have a list of containers (the "cards") that we would like the user to swipe. This beahviour is commonly seen in card games or dating apps.
 

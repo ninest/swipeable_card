@@ -66,17 +66,12 @@ In the above example, replace `someChildWidget()` with the widget that can be sw
 Click to reveal all parameters
 </summary>
 
-#### int `durationMilliseconds`
+#### int `animationDuration`
 - The animation duration that dictates
   - How long it takes the widget to move back to the origin
   - How long it takes for the widget to animate off the screen
 
-  Default value: `120`
-
-#### double `sensitivity`
-- The multiplier value for the position of the widget as it's being moved by the finger. Higher values make the swiping of the widget seem more responsive. If you aim to support a wide screen device, a higher sensitivity value is recommended so that the user doesn't have to swipe the widget all the way to the side.
-
-  Default value: `2.0`
+  Default value: `700`
 
 #### double `horizontalThreshold`
 - The position the swipeable widget is moved horizontally for it to be moved away. 
@@ -88,7 +83,7 @@ Click to reveal all parameters
   Default value: `0.85`
 
 #### double `verticalThreshold`
-- Not implemented yet.
+- **Not implemented yet.**
 
   The position the swipeable is moved vertically for it to be moved away.
 
@@ -98,34 +93,32 @@ Click to reveal all parameters
 
   No defaults set for this.
 
-#### double `outsideScreenHorizontalValue`
-- The position the swipeable should end. If you want the swipeable widget to animate going off screen, this value should be over `1.0`.
 
-  **Limitation/Issue**: Finding this value requires some trial and error. Please make a PR if you know off a better way to animate the widget off screen.
+#### Function `onLeftSwipe`
+- The function called when the card is moved beyond the left side `horizontalThreshold` (in terms of Align). If you're making a card game, this is where you would call the function that calls the next card.
 
-#### double `outsideScreenVerticalValue`
-- No defaults set for this.
-
-  **Limitation/Issue**: Finding this value also requires some trial and error. Please make a PR if you know off a better way to animate the widget off screen.
-
-
-#### Function `onHorizontalSwipe`
-- The function called when the card is moved beyond the `horizontalThreshold` (in terms of Align). If you're making a card game, this is where you would call the function that calls the next card.
-
-#### Function `onVerticalSwipe`
-- The function called when the card is moved above or below the vertical `verticalThreshold` (in terms of Align).
+#### Function `onRightSwipe`
+- See `onLeftSwipe`
 
 #### SwipeableWidgetController `swipeableWidgetController`
 - Controller that can swipe the card automatically (without user interaction).
 
   The following methods exist:
-  - `_swipeableWidgetController.triggerHorizontalSwipeLeft()`
-  - `_swipeableWidgetController.triggerHorizontalSwipeRight()`
-  - `_swipeableWidgetController.triggerVerticalSwipeTop()`
-  - `_swipeableWidgetController.triggerVerticalSwipeBottom()`
+  - `_swipeableWidgetController.triggerSwipeLeft()`
+  - `_swipeableWidgetController.triggerSwipeRight()`
+
+  The below two also exist, but are not yet implemented:
+  - `_swipeableWidgetController.triggerSwipeTop()`
+  - `_swipeableWidgetController.triggerSwipeBottom()`
 
 #### Widget `child` (required)
 - The child widget, which will be swipeable.
+
+
+#### List<Widget> `children`
+- The widgets behind the `child` 
+
+  These can be the other cards if it's a card game.
 
 </details>
 
@@ -133,12 +126,14 @@ Click to reveal all parameters
 ### Basic example
 ```
 SwipeableWidget(
-  // this value requires some trial and error to find
-  // (see limitations in README)
-  outsideScreenHorizontalValue: 8.0,
 
   child: CardExample(text: "This is card"),
-  onHorizontalSwipe: () => print("Card swiped!"),
+  nextCards: [
+    CardExample(text: "This is the card"),
+    CardExample(text: "This is third card"),
+  ]
+  onLeftSwipe: () => print("Card swiped!"),
+  onRightSwipe: () => print("Card swiped!"),
 )
 ```
 See the [Example](https://github.com/ninest/swipeable_card/tree/master/example) for more details. It contains a detailed write up on how to use the swipeable widget controller too.

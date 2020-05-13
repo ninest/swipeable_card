@@ -18,7 +18,8 @@
 ## 🎮 Examples
 
 ### Demo
-<img alt="Demo 1" src="./readme-assets/demo-1.gif" height="500"> <img alt="Demo 2" src="./readme-assets/demo-2.gif" height="500">
+<img alt="Demo 1" src="./readme-assets/demo-1.gif" height="500"> 
+<!-- <img alt="Demo 2" src="./readme-assets/demo-2.gif" height="500"> -->
 
 Check the [repository](https://github.com/ninest/swipeable_card) if you're unable to see the demo.
 

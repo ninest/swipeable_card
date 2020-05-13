@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# Swipeable Card (beta)
+# Swipeable Card (v1.x.x)
 
 **Add swipeable card-like widgets for games or interactive onboarding screens**
 
@@ -20,7 +20,7 @@
 ### Demo
 <img alt="Demo 1" src="./readme-assets/demo-1.gif" height="500"> <img alt="Demo 2" src="./readme-assets/demo-2.gif" height="500">
 
-Check to [repository](https://github.com/ninest/swipeable_card) if you're unable to see the demo.
+Check the [repository](https://github.com/ninest/swipeable_card) if you're unable to see the demo.
 
 ### App examples
 Swipeable Widget is used in the following apps:

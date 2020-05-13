@@ -34,27 +34,27 @@ class _ExampleRouteState extends State<ExampleRoute> {
               child: cards[currentCardIndex + 1],
             ),
 
-          if (currentCardIndex < cards.length)
-            SwipeableWidget(
-              // this value requires some trial and error to find
-              // (see limitations in README)
-              outsideScreenHorizontalValue: 8.0,
-              outsideScreenVerticalValue: 8.0,
-              enableVerticalSwiping: true,
-              child: cards[currentCardIndex],
-              // move to next card when top card is swiped away
-              onHorizontalSwipe: () => setState(() => currentCardIndex++),
-              onVerticalSwipe: () => setState(() => currentCardIndex++),
-            )
-          else
-            // if the deck is complete, add a button to reset deck
-            Align(
-              alignment: Alignment.center,
-              child: FlatButton(
-                child: Text("Reset deck"),
-                onPressed: () => setState(() => currentCardIndex = 0),
-              ),
-            ),
+          // if (currentCardIndex < cards.length)
+            // SwipeableWidget(
+            //   // this value requires some trial and error to find
+            //   // (see limitations in README)
+            //   outsideScreenHorizontalValue: 8.0,
+            //   outsideScreenVerticalValue: 8.0,
+            //   enableVerticalSwiping: true,
+            //   child: cards[currentCardIndex],
+            //   // move to next card when top card is swiped away
+            //   onHorizontalSwipe: () => setState(() => currentCardIndex++),
+            //   onVerticalSwipe: () => setState(() => currentCardIndex++),
+            // )
+          // else
+          //   // if the deck is complete, add a button to reset deck
+          //   Align(
+          //     alignment: Alignment.center,
+          //     child: FlatButton(
+          //       child: Text("Reset deck"),
+          //       onPressed: () => setState(() => currentCardIndex = 0),
+          //     ),
+          //   ),
         ],
       ),
     );

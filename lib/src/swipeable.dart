@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'animtions.dart';
+import 'animations.dart';
 import 'swipeable_widget_controller.dart';
 
 class SwipeableWidget extends StatefulWidget {
@@ -51,9 +51,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
 
     _controller.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        setState(() {
-          _childAlign = widget.initialAlignment;
-        });
+        // when animated completed, put card back at origin
+        _childAlign = widget.initialAlignment;
       }
     });
 
@@ -89,14 +88,15 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
                         });
                       },
                       onPanEnd: (_) {
+                        // _showGoBackToOrigin = false;
                         if (_childAlign.x > widget.horizontalThreshold)
                           animateCardLeaving(Direction.right);
                         else if (_childAlign.x < -widget.horizontalThreshold)
                           animateCardLeaving(Direction.left);
                         else {
-                          // setState(() {
-                          //   _childAlign = widget.initialAlignment;
-                          // });
+                          setState(() {
+                            _childAlign = widget.initialAlignment;
+                          });
                         }
                       },
                     ),
@@ -123,16 +123,25 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
         };
         break;
     }
+    // setting direction in which card is animating too
     _dir = dir;
     _controller.stop();
     _controller.value = 0.0;
     _controller.forward().then((value) => then());
   }
 
-  Widget child() => Align(
-        alignment: _controller.status == AnimationStatus.forward //
-            ? cardDismissAlignmentAnimation(_controller, _childAlign, _dir).value
-            : _childAlign,
-        child: widget.child,
-      );
+  Widget child() {
+    Alignment alignment;
+
+    if (_controller.status == AnimationStatus.forward) {
+      alignment = cardDismissAlignmentAnimation(_controller, _childAlign, _dir).value;
+    } else {
+      alignment = _childAlign;
+    }
+
+    return Align(
+      alignment: alignment,
+      child: widget.child,
+    );
+  }
 }

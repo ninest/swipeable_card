@@ -6,11 +6,11 @@ Animation<Alignment> cardDismissAlignmentAnimation(
   double x, y;
   // find direction it's being disissed
   if (dir == Direction.right || startAlign.x > 0) {
-    print("RIGHT, $dir");
+    // print("RIGHT, $dir");
     x = startAlign.x + 15.0;
     y = startAlign.y + 0.2;
   } else if (dir == Direction.left || startAlign.x < 0) {
-    print("LEFT, $dir");
+    // print("LEFT, $dir");
     x = startAlign.x - 15.0;
     y = startAlign.y + 0.2;
   } else {
@@ -26,6 +26,19 @@ Animation<Alignment> cardDismissAlignmentAnimation(
     CurvedAnimation(
       parent: controller,
       curve: Interval(0.0, 0.5, curve: Curves.easeIn),
+    ),
+  );
+}
+
+Animation<Alignment> cardBackToOrigin(
+    AnimationController controller, Alignment startAlign, Alignment initialAlign) {
+  return AlignmentTween(
+    begin: startAlign,
+    end: initialAlign,
+  ).animate(
+    CurvedAnimation(
+      parent: controller,
+      curve: Interval(0.0, 0.5, curve: Curves.easeOut),
     ),
   );
 }

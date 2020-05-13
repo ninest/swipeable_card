@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:swipeable_card/src/animtions.dart';
 
 class SwipeableWidget extends StatefulWidget {
   SwipeableWidget({
     Key key,
     this.animationDuration = 700,
     this.horizontalThreshold = 3.0,
-    this.onHorizontalSwipe,
+    this.onLeftSwipe,
+    this.onRightSwipe,
     this.initialAlignment = Alignment.center,
     @required this.child,
     this.nextCards,
@@ -15,7 +17,8 @@ class SwipeableWidget extends StatefulWidget {
 
   final double horizontalThreshold;
 
-  final Function onHorizontalSwipe;
+  final Function onLeftSwipe;
+  final Function onRightSwipe;
 
   final Alignment initialAlignment;
 
@@ -43,12 +46,9 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
 
     _controller.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        print("status completed");
-        print(_childAlign);
         setState(() {
-          _childAlign = Alignment.center;
+          _childAlign = widget.initialAlignment;
         });
-        widget.onHorizontalSwipe();
       }
     });
 
@@ -79,13 +79,14 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
                         });
                       },
                       onPanEnd: (_) {
-                        if (_childAlign.x > widget.horizontalThreshold ||
-                            _childAlign.x < -widget.horizontalThreshold) {
-                          animateCard();
-                        } else {
-                          setState(() {
-                            _childAlign = widget.initialAlignment;
-                          });
+                        if (_childAlign.x > widget.horizontalThreshold)
+                          animateCardLeaving(Direction.right);
+                        else if (_childAlign.x < -widget.horizontalThreshold)
+                          animateCardLeaving(Direction.left);
+                        else {
+                          // setState(() {
+                          //   _childAlign = widget.initialAlignment;
+                          // });
                         }
                       },
                     ),
@@ -97,30 +98,26 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
     );
   }
 
-  void animateCard() {
+  void animateCardLeaving(Direction dir) {
+    Function then;
+    switch (dir) {
+      case (Direction.left):
+        then = widget.onLeftSwipe;
+        break;
+      case (Direction.right):
+        then = widget.onRightSwipe;
+        break;
+      default:
+        then = () {
+          print('Top or Bottom');
+        };
+        break;
+    }
     _controller.stop();
     _controller.value = 0.0;
-    _controller.forward();
+    _controller.forward().then((value) => then());
   }
 
-  Animation<Alignment> cardDismissAlignmentAnimation(
-          AnimationController controller, Alignment startAlign) =>
-      AlignmentTween(
-        begin: startAlign,
-        end: Alignment(
-          startAlign.x > 0 ? startAlign.x + 15.0 : startAlign.x - 15.0,
-          startAlign.y + 0.2,
-        ),
-      ).animate(
-        CurvedAnimation(
-          parent: controller,
-          curve: Interval(
-            0.0,
-            0.5,
-            curve: Curves.easeIn,
-          ),
-        ),
-      );
 
   Widget child() => Align(
         alignment: _controller.status == AnimationStatus.forward //
@@ -130,3 +127,5 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
         child: widget.child,
       );
 }
+
+enum Direction { left, right, top, bottom }

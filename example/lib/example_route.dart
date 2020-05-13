@@ -42,7 +42,14 @@ class _ExampleRouteState extends State<ExampleRoute> {
                     child: cards[currentCardIndex + 1],
                   ),
               ],
-              onHorizontalSwipe: () {
+              onLeftSwipe: () {
+                print("left");
+                setState(() {
+                  currentCardIndex++;
+                });
+              },
+              onRightSwipe: () {
+                print("right");
                 setState(() {
                   currentCardIndex++;
                 });

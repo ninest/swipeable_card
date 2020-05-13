@@ -140,7 +140,9 @@ See the [Example](https://github.com/ninest/swipeable_card/tree/master/example) 
 
 ## 😐 Issues and limitations
 
-As of now, all the problems from v0.0.x seem to be dealth with, but I'm still going to keep this section for now.
+If you use the a `swipeableWidgetController` to automatically swipe the cards (without the user panning), you can only start swiping the next card away when the previous one is fully swiped away. To see a demo, run the example, and continuously tap the "Left" button at the bottom of the screen.
+
+Apart from that, all the other problems from v0.0.x seem to be dealth with.
 
 ## 📝 Other information
 Project start date: 1 May, 2020.

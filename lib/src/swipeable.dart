@@ -7,8 +7,8 @@ class SwipeableWidget extends StatefulWidget {
     Key key,
     this.cardController,
     this.animationDuration = 700,
-    this.horizontalThreshold = 3.0,
-    this.verticalThreshold = 3.0,
+    this.horizontalThreshold = 0.85,
+    this.verticalThreshold = 0.95,
     this.onLeftSwipe,
     this.onRightSwipe,
     @required this.child,
@@ -16,18 +16,27 @@ class SwipeableWidget extends StatefulWidget {
   }) : super(key: key);
 
   final SwipeableWidgetController cardController;
+
+  /// Animation duration in millseconds
   final int animationDuration;
+
+  /// Alignment.x value beyond which card will be dismissed
   final double horizontalThreshold;
 
   /// NOT IMPLEMENTED YET
   final double verticalThreshold;
 
+  /// Function executed when the card is swiped lieft
   final Function onLeftSwipe;
+
+  /// Function executed when the card is swiped lieft
   final Function onRightSwipe;
 
   /// The child widget, which is swipeable
   final Widget child;
 
+  /// Any widgets to show behind the [child]. These will most likely be the next
+  /// few cards in the deck
   final List<Widget> nextCards;
 
   @override

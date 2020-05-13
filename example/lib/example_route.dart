@@ -44,18 +44,8 @@ class _ExampleRouteState extends State<ExampleRoute> {
                       child: cards[currentCardIndex + 1],
                     ),
                 ],
-                onLeftSwipe: () {
-                  print("left");
-                  setState(() {
-                    currentCardIndex++;
-                  });
-                },
-                onRightSwipe: () {
-                  print("right");
-                  setState(() {
-                    currentCardIndex++;
-                  });
-                },
+                onLeftSwipe: () => swipeLeft(),
+                onRightSwipe: () => swipeRight(),
               )
             else
               // if the deck is complete, add a button to reset deck
@@ -75,8 +65,24 @@ class _ExampleRouteState extends State<ExampleRoute> {
     );
   }
 
+  void swipeLeft() {
+    print("left");
+
+    // NOTE: it is your job to change the card
+    setState(() {
+      currentCardIndex++;
+    });
+  }
+
+  void swipeRight() {
+    print("right");
+    setState(() {
+      currentCardIndex++;
+    });
+  }
+
   Widget cardController(SwipeableWidgetController cardController) => Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           FlatButton(
             child: Text("Left"),

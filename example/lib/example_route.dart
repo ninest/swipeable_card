@@ -23,12 +23,15 @@ class _ExampleRouteState extends State<ExampleRoute> {
 
   @override
   Widget build(BuildContext context) {
+    SwipeableWidgetController _swc = SwipeableWidgetController();
     return Scaffold(
-      body: Column(
+        body: SafeArea(
+      child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           if (currentCardIndex < cards.length)
             SwipeableWidget(
+              cardController: _swc,
               animationDuration: 700,
               horizontalThreshold: 0.85,
               initialAlignment: Alignment.center,
@@ -66,33 +69,16 @@ class _ExampleRouteState extends State<ExampleRoute> {
                 ),
               ),
             ),
+          RaisedButton(
+            child: Text("Left"),
+            onPressed: () => _swc.triggerHorizontalSwipeLeft(),
+          ),
+          RaisedButton(
+            child: Text("Right"),
+            onPressed: () => _swc.triggerHorizontalSwipeRight(),
+          ),
         ],
       ),
-      // body: Stack(
-      //   children: <Widget>[
-      //     // show next card
-      //     // if there are no next cards, show nothing
-      //     if (!(currentCardIndex + 1 >= cards.length))
-      //       Align(
-      //         alignment: Alignment.center,
-      //         child: cards[currentCardIndex + 1],
-      //       ),
-
-      //     if (currentCardIndex < cards.length)
-      //       SwipeableWidget(
-      //         child: cards[currentCardIndex],
-      //       )
-      //     else
-      //       // if the deck is complete, add a button to reset deck
-      //       Align(
-      //         alignment: Alignment.center,
-      //         child: FlatButton(
-      //           child: Text("Reset deck"),
-      //           onPressed: () => setState(() => currentCardIndex = 0),
-      //         ),
-      //       ),
-      //   ],
-      // ),
-    );
+    ));
   }
 }

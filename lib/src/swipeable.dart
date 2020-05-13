@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:swipeable_card/src/animtions.dart';
+import 'animtions.dart';
+import 'swipeable_widget_controller.dart';
 
 class SwipeableWidget extends StatefulWidget {
   SwipeableWidget({
     Key key,
+    this.cardController,
     this.animationDuration = 700,
     this.horizontalThreshold = 3.0,
     this.onLeftSwipe,
@@ -13,13 +15,14 @@ class SwipeableWidget extends StatefulWidget {
     this.nextCards,
   }) : super(key: key);
 
+  final SwipeableWidgetController cardController;
   final int animationDuration;
-
   final double horizontalThreshold;
 
   final Function onLeftSwipe;
   final Function onRightSwipe;
 
+  /// The origin alignment (most likely Alignment.center)
   final Alignment initialAlignment;
 
   /// The child widget, which is swipeable
@@ -35,6 +38,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Alignment _childAlign;
+
+  Direction _dir;
 
   @override
   void initState() {
@@ -58,6 +63,11 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
 
   @override
   Widget build(BuildContext context) {
+    // controller isn't necessary
+    widget.cardController?.setListener((dir) {
+      // animate card out in specified direction
+      animateCardLeaving(dir);
+    });
     return Expanded(
       child: Stack(
         children: <Widget>[
@@ -113,19 +123,16 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
         };
         break;
     }
+    _dir = dir;
     _controller.stop();
     _controller.value = 0.0;
     _controller.forward().then((value) => then());
   }
 
-
   Widget child() => Align(
         alignment: _controller.status == AnimationStatus.forward //
-            ? cardDismissAlignmentAnimation(_controller, _childAlign).value
+            ? cardDismissAlignmentAnimation(_controller, _childAlign, _dir).value
             : _childAlign,
-        // alignment: _childAlign,
         child: widget.child,
       );
 }
-
-enum Direction { left, right, top, bottom }

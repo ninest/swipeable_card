@@ -140,7 +140,7 @@ See the [Example](https://github.com/ninest/swipeable_card/tree/master/example) 
 
 ## 😐 Issues and limitations
 
-As of now, there's no animation to bring cards back to the origin if they should not be dismissed. We're hopinh to fix this before the v1.0.0 release.
+As of now, all the problems from v0.0.x seem to be dealth with, but I'm still going to keep this section for now.
 
 ## 📝 Other information
 Project start date: 1 May, 2020.

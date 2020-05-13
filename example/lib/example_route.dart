@@ -34,7 +34,6 @@ class _ExampleRouteState extends State<ExampleRoute> {
               cardController: _swc,
               animationDuration: 700,
               horizontalThreshold: 0.85,
-              initialAlignment: Alignment.center,
               child: cards[currentCardIndex],
               nextCards: <Widget>[
                 // show next card

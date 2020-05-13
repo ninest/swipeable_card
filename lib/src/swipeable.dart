@@ -10,7 +10,6 @@ class SwipeableWidget extends StatefulWidget {
     this.horizontalThreshold = 3.0,
     this.onLeftSwipe,
     this.onRightSwipe,
-    this.initialAlignment = Alignment.center,
     @required this.child,
     this.nextCards,
   }) : super(key: key);
@@ -22,8 +21,6 @@ class SwipeableWidget extends StatefulWidget {
   final Function onLeftSwipe;
   final Function onRightSwipe;
 
-  /// The origin alignment (most likely Alignment.center)
-  final Alignment initialAlignment;
 
   /// The child widget, which is swipeable
   final Widget child;
@@ -38,6 +35,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Alignment _childAlign;
+  Alignment _initialAlignment = Alignment.center;
 
   // stores the direction in which the card is being dismissed
   Direction _dir;
@@ -53,12 +51,12 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
     _controller.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
         // when animated completed, put card back at origin
-        _childAlign = widget.initialAlignment;
+        _childAlign = _initialAlignment;
       }
     });
 
     // card alignment
-    _childAlign = widget.initialAlignment;
+    _childAlign = _initialAlignment;
   }
 
   @override

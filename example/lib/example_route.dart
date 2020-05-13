@@ -59,7 +59,7 @@ class _ExampleRouteState extends State<ExampleRoute> {
             // only show the card controlling buttons when there are cards
             // otherwise, just hide it
             if (currentCardIndex < cards.length)
-              cardController(_cardController),
+              cardControllerRow(_cardController),
           ],
         ),
       ),
@@ -82,17 +82,19 @@ class _ExampleRouteState extends State<ExampleRoute> {
     });
   }
 
-  Widget cardController(SwipeableWidgetController cardController) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          FlatButton(
-            child: Text("Left"),
-            onPressed: () => cardController.triggerSwipeLeft(),
-          ),
-          FlatButton(
-            child: Text("Right"),
-            onPressed: () => cardController.triggerSwipeRight(),
-          ),
-        ],
-      );
+  Widget cardControllerRow(SwipeableWidgetController cardController) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        FlatButton(
+          child: Text("Left"),
+          onPressed: () => cardController.triggerSwipeLeft(),
+        ),
+        FlatButton(
+          child: Text("Right"),
+          onPressed: () => cardController.triggerSwipeRight(),
+        ),
+      ],
+    );
+  }
 }

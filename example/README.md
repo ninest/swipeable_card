@@ -1,11 +1,5 @@
 # Swipeable Card Example
 
-**WARNING: THIS IS OUTDATED AS OF v1.0.0**
-
-But it works for v0.0.2. I recommend waiting until the 1.0.0 release.
-
-**IT WILL BE UPDATED SOON**
-
 ## Explanation (see `example_route.dart`)
 We have a list of containers (the "cards") that we would like the user to swipe. This beahviour is commonly seen in card games or dating apps.
 
@@ -26,25 +20,34 @@ The user should first see the card "First card", which is red, so the `currentCa
 In the `Scaffold`, we see an `Align` widget with the following children:
 
 ```
-// (2)
-if (!(currentCardIndex + 1 >= cards.length))
-  Align(
-    alignment: Alignment.center,
-    child: cards[currentCardIndex + 1],
-  ),
-
-// (1)
 if (currentCardIndex < cards.length)
   SwipeableWidget(
-    outsideScreenHorizontalValue: 8.0,
+    cardController: _cardController,
+    animationDuration: 500,
+    horizontalThreshold: 0.85,
+    // (1)
     child: cards[currentCardIndex],
-    // move to next card when top card is swiped away
-    onHorizontalSwipe: () => setState(() => currentCardIndex++),
+    nextCards: <Widget>[
+      // show next card
+      // if there are no next cards, show nothing
+      if (!(currentCardIndex + 1 >= cards.length))
+        // (2)
+        Align(
+          alignment: Alignment.center,
+          child: cards[currentCardIndex + 1],
+        ),
+    ],
+    onLeftSwipe: () => swipeLeft(),
+    onRightSwipe: () => swipeRight(),
   )
-
 else
-  // display button to "reset deck" 
-  // (the widget here will only show when current card index is equal to the length of cards list)
+  // if the deck is complete, add a button to reset deck
+  Center(
+    child: FlatButton(
+      child: Text("Reset deck"),
+      onPressed: () => setState(() => currentCardIndex = 0),
+    ),
+  ),
 ```
 
 ### What's going on here?
@@ -53,7 +56,7 @@ See the comments in the code for the labels `(1)` and `(2)`.
 
 1. This is the card on top which the user sees. It is a `SwipeableWidget`, so users can interact with it and swipe it away. It's child is the `cards[currentCardIndex]`, so it is the 1st card initially.
 
-2. This is the card **behind** the current card. It is **not** wrapped by the `SwipeableWidget`, so the user cannot interact with it. It is `cards[currentCardIndex + 1]`, so it's the 2nd card initialilly.
+2. This is the card **behind** the current card. The user **cannot** interact with it. It is `cards[currentCardIndex + 1]`, so it's the 2nd card initially. You may put as many widgets as you want in `nextCards`. They will be stacked over each other.
 
 As the value of `currentCardIndex`, increases, the card the user sees (1) and card behind that (2) are both increased appropriately.
 
@@ -72,7 +75,29 @@ This is what the users see:
 2. After a delay, the card is moved back to the center without any animaton.
 3. Using state management (`setState` in this case) to show the next card.
 
-**In short**, the card behind the one wrapped in `SwipeableWidget` is a dummy card. Try removing it to see what happens!
+**In short**, the card in the `nextCards` list. Try removing it to see what happens!
+
+**Note:** It is your job to handle showing the user the next card. In this simple example, to show the next card, all that needs to be done is add `1` to `currentCardIndex`. This is done by the `onLeftSwipe` and `onRightSwipe` functions:
+
+```
+void swipeLeft() {
+  print("card swiped to the left");
+
+  // going to next card
+  setState(() {
+    currentCardIndex++;
+  });
+}
+
+void swipeRight() {
+  print("card swiped to the left");
+
+  // going to next card
+  setState(() {
+    currentCardIndex++;
+  });
+}
+```
 
 ### What about the `if` statements?
 
@@ -80,63 +105,45 @@ They're just there to prevent the app from erroring when the user has reached th
 
 By resetting the deck, it just sets `currentCardIndex` to `0`. If you're making a game, you may want to get a new list of cards or randomize the the order of the cards first.
 
-## I want to swipe the cards to the top and bottom too
+## Using the `SwipeableWidgetController`
+This allows you to swipe the cards without having the user touch or pan them.
 
-Make use of the following properties:
-- `enableVerticalSwiping`
-- `outsideScreenVerticalValue`
-- `onVerticalSwipe`
-
-### Example
-
-Replace the `SwipeableWidget( ... )` from `home_route.dart` to
+Pass the `SwipeableWidgetController` like so:
 
 ```
+SwipeableWidgetController _cardController = SwipeableWidgetController();
+...
 SwipeableWidget(
-  // add this
-  enableVerticalSwiping: true,
-
-  outsideScreenHorizontalValue: 8.0,
-
-  // add this
-  outsideScreenVerticalValue: 8.0,
-
-  child: cards[currentCardIndex],
-
-  onHorizontalSwipe: () => setState(() => currentCardIndex++),
-
-  // add this
-  onVerticalSwipe: () => setState(() => currentCardIndex++),
+  cardController: _cardController,
+  ...
 )
 ```
 
-Once again, some trial and error is required to correctly set the value of `outsideScreenVerticalValue`. You may specify a different function that executes when the card is swiped away vertically.
+Now you can call the following functions:
+- `_cardController.triggerSwipeLeft()`
+- `_cardController.triggerSwipeRight()`
 
-Once you have set the above modified `SwipeableWidget`, run the example and try swiping the card to the top and bottom!
-
-## Automatically swiping cards (without user manually swiping) (see `controller_example_route.dart`)
-
-Check out `controller_example_route.dart`. First, go to `main.dart` and set the child of `MaterialApp` to `ControllerExampleRoute`:
+Check out the `cardControllerRow` widget:
 
 ```
-return MaterialApp(
-  ...
-  home: ControllerExampleRoute(),
-);
+Widget cardController(SwipeableWidgetController cardController) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: <Widget>[
+      FlatButton(
+        child: Text("Left"),
+        onPressed: () => cardController.triggerSwipeLeft(),
+      ),
+      FlatButton(
+        child: Text("Right"),
+        onPressed: () => cardController.triggerSwipeRight(),
+      ),
+    ],
+  );
+}
 ```
 
-Run the app and use the buttons at the bottom of the screen to swipe cards.
-
-For example, to swipe the card to the left, tap the "left" button: 
-
-```
-FlatButton(
-  child: Text("left"),
-
-  // The below function automatically swipes the card
-  onPressed: () => _swc.triggerHorizontalSwipeLeft(),
-),
-```
+Tapping on the buttons swipes the cards to the left and right respectively.
 
 ## Improvements you can make
 ### 1. Make cards look more natural

@@ -8,6 +8,7 @@ class SwipeableWidget extends StatefulWidget {
     this.cardController,
     this.animationDuration = 700,
     this.horizontalThreshold = 3.0,
+    this.verticalThreshold = 3.0,
     this.onLeftSwipe,
     this.onRightSwipe,
     @required this.child,
@@ -18,9 +19,11 @@ class SwipeableWidget extends StatefulWidget {
   final int animationDuration;
   final double horizontalThreshold;
 
+  /// NOT IMPLEMENTED YET
+  final double verticalThreshold;
+
   final Function onLeftSwipe;
   final Function onRightSwipe;
-
 
   /// The child widget, which is swipeable
   final Widget child;
@@ -114,9 +117,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
         then = widget.onRightSwipe;
         break;
       default:
-        then = () {
-          print('Top or Bottom');
-        };
+        // should go to top or bottom
+        then = () {};
         break;
     }
     // setting direction in which card is animating too

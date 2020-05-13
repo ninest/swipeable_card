@@ -23,61 +23,69 @@ class _ExampleRouteState extends State<ExampleRoute> {
 
   @override
   Widget build(BuildContext context) {
-    SwipeableWidgetController _swc = SwipeableWidgetController();
+    SwipeableWidgetController _cardController = SwipeableWidgetController();
     return Scaffold(
-        body: SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          if (currentCardIndex < cards.length)
-            SwipeableWidget(
-              cardController: _swc,
-              animationDuration: 700,
-              horizontalThreshold: 0.85,
-              child: cards[currentCardIndex],
-              nextCards: <Widget>[
-                // show next card
-                // if there are no next cards, show nothing
-                if (!(currentCardIndex + 1 >= cards.length))
-                  Align(
-                    alignment: Alignment.center,
-                    child: cards[currentCardIndex + 1],
+      body: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            if (currentCardIndex < cards.length)
+              SwipeableWidget(
+                cardController: _cardController,
+                animationDuration: 700,
+                horizontalThreshold: 0.85,
+                child: cards[currentCardIndex],
+                nextCards: <Widget>[
+                  // show next card
+                  // if there are no next cards, show nothing
+                  if (!(currentCardIndex + 1 >= cards.length))
+                    Align(
+                      alignment: Alignment.center,
+                      child: cards[currentCardIndex + 1],
+                    ),
+                ],
+                onLeftSwipe: () {
+                  print("left");
+                  setState(() {
+                    currentCardIndex++;
+                  });
+                },
+                onRightSwipe: () {
+                  print("right");
+                  setState(() {
+                    currentCardIndex++;
+                  });
+                },
+              )
+            else
+              // if the deck is complete, add a button to reset deck
+              Center(
+                child: Container(
+                  margin: EdgeInsets.only(top: 100.0),
+                  child: FlatButton(
+                    child: Text("Reset deck"),
+                    onPressed: () => setState(() => currentCardIndex = 0),
                   ),
-              ],
-              onLeftSwipe: () {
-                print("left");
-                setState(() {
-                  currentCardIndex++;
-                });
-              },
-              onRightSwipe: () {
-                print("right");
-                setState(() {
-                  currentCardIndex++;
-                });
-              },
-            )
-          else
-            // if the deck is complete, add a button to reset deck
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(top: 100.0),
-                child: FlatButton(
-                  child: Text("Reset deck"),
-                  onPressed: () => setState(() => currentCardIndex = 0),
                 ),
               ),
-            ),
-          RaisedButton(
+            cardController(_cardController),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget cardController(SwipeableWidgetController cardController) => Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          FlatButton(
             child: Text("Left"),
-            onPressed: () => _swc.triggerSwipeLeft(),
+            onPressed: () => cardController.triggerSwipeLeft(),
           ),
-          RaisedButton(
+          FlatButton(
             child: Text("Right"),
-            onPressed: () => _swc.triggerSwipeRight(),
+            onPressed: () => cardController.triggerSwipeRight(),
           ),
         ],
-      ),
-    ));
-  }
+      );
 }

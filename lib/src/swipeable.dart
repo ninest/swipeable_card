@@ -62,12 +62,12 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
 
     _controller.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        // when animated completed, put card back at origin
+        // when animated completed, put card back at origin without animation
         _childAlign = _initialAlignment;
       }
     });
 
-    // card alignment
+    // setting the initial alignment
     _childAlign = _initialAlignment;
   }
 
@@ -78,11 +78,17 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
       // animate card out in specified direction
       animateCardLeaving(dir);
     });
+
     return Expanded(
       child: Stack(
         children: <Widget>[
+          // widgets behind current card
           ...widget.nextCards,
+
+          // current card
           child(),
+
+          // when the card is animating, prevent onPanUpdate to exxecute
           _controller.status != AnimationStatus.forward
               ? SizedBox.expand(
                   child: GestureDetector(
@@ -90,6 +96,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
                       final screenWidth = MediaQuery.of(context).size.width;
                       final screenHeight = MediaQuery.of(context).size.height;
                       setState(() {
+                        // setting new alignment based on finger position
                         _childAlign = Alignment(
                           _childAlign.x + 8 * details.delta.dx / screenWidth,
                           _childAlign.y + 10 * details.delta.dy / screenHeight,
@@ -102,10 +109,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
                       else if (_childAlign.x < -widget.horizontalThreshold)
                         animateCardLeaving(Direction.left);
                       else {
+                        // when direction is null, it goes back to the center
                         animateCardLeaving(null);
-                        // setState(() {
-                        //   _childAlign = widget.initialAlignment;
-                        // });
                       }
                     },
                   ),
@@ -126,7 +131,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
         then = widget.onRightSwipe;
         break;
       default:
-        // should go to top or bottom
+        //TODO: implement top and bottom (vertical)
+        //should go to top or bottom
         then = () {};
         break;
     }
@@ -134,6 +140,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
     _dir = dir;
     _controller.stop();
     _controller.value = 0.0;
+
+    // once the animation is over, execute the function
     _controller.forward().then((value) => then());
   }
 

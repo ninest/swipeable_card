@@ -5,6 +5,7 @@
   - `outsideScreenHorizontalValue`
   - `outsideScreenVerticalValue`
 - Split on horizontal swipe to on left and right swipe functions
+- Changed function names for `SwipeableWidgetController` (shortened)
 
 ## [0.0.2] - May 12, 2020
 - Improved [example](https://github.com/ninest/swipeable_card/tree/master/example)

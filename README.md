@@ -91,14 +91,14 @@ Click to reveal all parameters
 
   This [diagram in this video](https://youtu.be/g2E7yl3MwMk?t=56) may help you visualize the correct position.
 
-  No defaults set for this.
+  Default value: `0.95`
 
 
 #### Function `onLeftSwipe`
 - The function called when the card is moved beyond the left side `horizontalThreshold` (in terms of Align). If you're making a card game, this is where you would call the function that calls the next card.
 
 #### Function `onRightSwipe`
-- See `onLeftSwipe`
+- Similar to `onLeftSwipe`
 
 #### SwipeableWidgetController `swipeableWidgetController`
 - Controller that can swipe the card automatically (without user interaction).

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFF111111),
       ),
       // home: ExampleRoute(),
-      home: ControllerExampleRoute(),
+      home: ExampleRoute(),
     );
   }
 }

@@ -24,39 +24,45 @@ class _ExampleRouteState extends State<ExampleRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          // show next card
-          // if there are no next cards, show nothing
-          if (!(currentCardIndex + 1 >= cards.length))
-            Align(
-              alignment: Alignment.center,
-              child: cards[currentCardIndex + 1],
-            ),
-
-          // if (currentCardIndex < cards.length)
-            // SwipeableWidget(
-            //   // this value requires some trial and error to find
-            //   // (see limitations in README)
-            //   outsideScreenHorizontalValue: 8.0,
-            //   outsideScreenVerticalValue: 8.0,
-            //   enableVerticalSwiping: true,
-            //   child: cards[currentCardIndex],
-            //   // move to next card when top card is swiped away
-            //   onHorizontalSwipe: () => setState(() => currentCardIndex++),
-            //   onVerticalSwipe: () => setState(() => currentCardIndex++),
-            // )
-          // else
-          //   // if the deck is complete, add a button to reset deck
-          //   Align(
-          //     alignment: Alignment.center,
-          //     child: FlatButton(
-          //       child: Text("Reset deck"),
-          //       onPressed: () => setState(() => currentCardIndex = 0),
-          //     ),
-          //   ),
+          SwipeableWidget(
+            animationDuration: 700,
+            child: cards[currentCardIndex],
+            nextCards: <Widget>[
+              Align(
+                alignment: Alignment.center,
+                child: cards[currentCardIndex + 1],
+              ),
+            ],
+          ),
         ],
       ),
+      // body: Stack(
+      //   children: <Widget>[
+      //     // show next card
+      //     // if there are no next cards, show nothing
+      //     if (!(currentCardIndex + 1 >= cards.length))
+      //       Align(
+      //         alignment: Alignment.center,
+      //         child: cards[currentCardIndex + 1],
+      //       ),
+
+      //     if (currentCardIndex < cards.length)
+      //       SwipeableWidget(
+      //         child: cards[currentCardIndex],
+      //       )
+      //     else
+      //       // if the deck is complete, add a button to reset deck
+      //       Align(
+      //         alignment: Alignment.center,
+      //         child: FlatButton(
+      //           child: Text("Reset deck"),
+      //           onPressed: () => setState(() => currentCardIndex = 0),
+      //         ),
+      //       ),
+      //   ],
+      // ),
     );
   }
 }

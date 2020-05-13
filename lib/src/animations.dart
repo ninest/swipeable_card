@@ -10,16 +10,16 @@ Animation<Alignment> cardDismissAlignmentAnimation(
   // find direction it's being disissed
   if (dir == Direction.right || startAlign.x > 0) {
     // print("RIGHT, $dir");
-    x = startAlign.x + 15.0;
+    x = startAlign.x + 18.0;
     y = startAlign.y + 0.2;
   } else if (dir == Direction.left || startAlign.x < 0) {
     // print("LEFT, $dir");
-    x = startAlign.x - 15.0;
+    x = startAlign.x - 18.0;
     y = startAlign.y + 0.2;
   } else {
     // TODO: implement top and bottom
-    // by default, take to left
-    x = startAlign.x + 15.0;
+    // by default, take to left (the code shouldn't reach here)
+    x = startAlign.x + 18.0;
     y = startAlign.y + 0.2;
   }
 

@@ -1,3 +1,11 @@
+## [1.0.0]- May 13, 2020
+- Made card movement more smooth in general
+- Using curves for animation
+- Removed need for:
+  - `outsideScreenHorizontalValue`
+  - `outsideScreenVerticalValue`
+- Split on horizontal swipe to on left and right swipe functions
+
 ## [0.0.2] - May 12, 2020
 - Improved [example](https://github.com/ninest/swipeable_card/tree/master/example)
 - Improved description of package

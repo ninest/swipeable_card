@@ -1,3 +1,6 @@
+## [1.0.1]- May 13, 2020
+- Fixed issue where card would stick to side of screen
+
 ## [1.0.0]- May 13, 2020
 - Made card movement more smooth in general
 - Using curves for animation

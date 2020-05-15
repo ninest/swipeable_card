@@ -33,7 +33,6 @@ class SwipeableWidget extends StatefulWidget {
   /// Function executed when the card is swiped lieft
   final Function onRightSwipe;
 
-
   /// The multiplier for the scroll value
   final double scrollSensitivity;
 
@@ -96,30 +95,28 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
           // when the card is animating, prevent onPanUpdate to exxecute
           _controller.status != AnimationStatus.forward
               ? SizedBox.expand(
-                  child: 
-                  GestureDetector(
-                    onPanUpdate: (DragUpdateDetails details) {
-                      final screenWidth = MediaQuery.of(context).size.width;
-                      final screenHeight = MediaQuery.of(context).size.height;
-                      setState(() {
-                        // setting new alignment based on finger position
-                        _childAlign = Alignment(
-                          _childAlign.x + widget.scrollSensitivity * details.delta.dx / screenWidth,
-                          _childAlign.y + widget.scrollSensitivity * details.delta.dy / screenHeight,
-                        );
-                      });
-                    },
-                    onPanEnd: (_) {
-                      if (_childAlign.x > widget.horizontalThreshold)
-                        animateCardLeaving(Direction.right);
-                      else if (_childAlign.x < -widget.horizontalThreshold)
-                        animateCardLeaving(Direction.left);
-                      else {
-                        // when direction is null, it goes back to the center
-                        animateCardLeaving(null);
-                      }
-                    },
-                  ),
+                  child: GestureDetector(onPanUpdate: (DragUpdateDetails details) {
+                    final screenWidth = MediaQuery.of(context).size.width;
+                    final screenHeight = MediaQuery.of(context).size.height;
+                    setState(() {
+                      // setting new alignment based on finger position
+                      _childAlign = Alignment(
+                        _childAlign.x +
+                            widget.scrollSensitivity * details.delta.dx / screenWidth,
+                        _childAlign.y +
+                            widget.scrollSensitivity * details.delta.dy / screenHeight,
+                      );
+                    });
+                  }, onPanEnd: (_) {
+                    if (_childAlign.x > widget.horizontalThreshold)
+                      animateCardLeaving(Direction.right);
+                    else if (_childAlign.x < -widget.horizontalThreshold)
+                      animateCardLeaving(Direction.left);
+                    else {
+                      // when direction is null, it goes back to the center
+                      animateCardLeaving(null);
+                    }
+                  }),
                 )
               : Container(),
         ],

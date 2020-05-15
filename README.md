@@ -65,6 +65,8 @@ Stack(
 
 In the above example, replace `someChildWidget()` with the widget that can be swiped (for example, a playing card-like widget).
 
+Warning: while `SwipeableWidget` is fast on iPhones, it can be quite slow for older Android devices. I am currently working on `SwipeableWidgetSlide`, an alternative which can be used for older Android devices.
+
 ### Parameters
 
 <details>

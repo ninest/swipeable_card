@@ -4,7 +4,7 @@
 
 Add `swipeable_card` to your `pubspec.yaml`:
 
-```
+```yaml
 dependencies:
   flutter:
     sdk: flutter
@@ -15,10 +15,8 @@ dependencies:
 
 ## Basic example
 
-Basic example
-```
+```dart
 SwipeableWidget(
-
   child: CardExample(text: "This is card"),
   nextCards: [
     CardExample(text: "This is the card"),

@@ -19,3 +19,13 @@ theme:
   name: material
   features:
     - tabs
+    - instant
+  palette:
+    primary: black
+    accent: indigo
+
+extra_css:
+  - extra/styles.css
+
+markdown_extensions:
+  - codehilite

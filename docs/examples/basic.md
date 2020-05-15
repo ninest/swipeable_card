@@ -4,7 +4,7 @@
 ## Explanation (see `example_route.dart`)
 We have a list of containers (the "cards") that we would like the user to swipe. This beahviour is commonly seen in card games or dating apps.
 
-```
+```dart
 // CardExample is a custom container with a nice border and rounded corners
 final List<CardExample> cards = [
   CardExample(color: Colors.red, text: "First card"),
@@ -20,7 +20,7 @@ The user should first see the card "First card", which is red, so the `currentCa
 
 In the `Scaffold`, we see an `Align` widget with the following children:
 
-```
+```dart hl_lines="7 13 14 15 16"
 if (currentCardIndex < cards.length)
   SwipeableWidget(
     cardController: _cardController,
@@ -80,7 +80,7 @@ This is what the users see:
 
 **Note:** It is your job to handle showing the user the next card. In this simple example, to show the next card, all that needs to be done is add `1` to `currentCardIndex`. This is done by the `onLeftSwipe` and `onRightSwipe` functions:
 
-```
+```dart
 void swipeLeft() {
   print("card swiped to the left");
 
@@ -126,7 +126,7 @@ Now you can call the following functions:
 
 Check out the `cardControllerRow` widget:
 
-```
+```dart
 Widget cardController(SwipeableWidgetController cardController) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,

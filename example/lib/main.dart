@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'example_route.dart';
-// import 'controller_example_route.dart';
+import 'example_slide_route.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFF111111),
       ),
       // home: ExampleRoute(),
-      home: ExampleRoute(),
+      // home: ExampleRoute(),
+      home: ExampleRouteSlide(),
     );
   }
 }

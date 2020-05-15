@@ -91,7 +91,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
           // when the card is animating, prevent onPanUpdate to exxecute
           _controller.status != AnimationStatus.forward
               ? SizedBox.expand(
-                  child: GestureDetector(
+                  child: 
+                  GestureDetector(
                     onPanUpdate: (DragUpdateDetails details) {
                       final screenWidth = MediaQuery.of(context).size.width;
                       final screenHeight = MediaQuery.of(context).size.height;

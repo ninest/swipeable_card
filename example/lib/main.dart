@@ -1,5 +1,5 @@
-// check out https://github.com/ninest/swipeable_card/tree/master/example
-// for a better explanation
+// check out https://swipeable-card.now.sh/examples/basic/ for a full
+// better explanation
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

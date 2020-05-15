@@ -18,8 +18,12 @@
 ## 🎮 Examples
 
 ### Demo
+
+#### `SwipeableWidget` (meant for high performance devices, like iPhones)
 <img alt="Demo 1" src="./readme-assets/demo-1.gif" height="500"> 
 <!-- <img alt="Demo 2" src="./readme-assets/demo-2.gif" height="500"> -->
+
+#### `SwipeableWidgetSlide` (meant for lower performance devices, like older Android devices)
 
 Check the [repository](https://github.com/ninest/swipeable_card) if you're unable to see the demo.
 

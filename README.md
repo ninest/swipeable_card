@@ -67,6 +67,7 @@ In the above example, replace `someChildWidget()` with the widget that can be sw
 
 Warning: while `SwipeableWidget` is fast on iPhones, it can be quite slow for older Android devices. I am currently working on `SwipeableWidgetSlide`, an alternative which can be used for older Android devices.
 
+Check out [https://swipeable-card.now.sh/](https://swipeable-card.now.sh/) for the full documentation (still a work in progress).
 
 
 ## 😐 Issues and limitations

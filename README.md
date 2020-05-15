@@ -34,7 +34,7 @@ Swipeable Widget is used in the following apps:
 - [Shots](https://github.com/ninest/Shots)
 - Create a PR to add your own!
 
-## 📒 Documentation
+## [📒 Documentation](https://swipeable-card.now.sh/)
 
 ### Installation
 Add `swipeable_card` to your `pubspec.yaml`:

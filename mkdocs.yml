@@ -1,0 +1,19 @@
+site_name: Swipeable Card
+nav:
+  - Home: index.md
+  - About: about.md
+  - "Getting started":
+    - Installation: getting-started/installation.md
+  - Guide: 
+    - SwipeableWidget: guide/swipeable-widget.md
+    - SwipeableWidgerController: guide/swipeable-widget-controller.md
+    - SwipeableWidgerSlide: guide/swipeable-widget-slide.md
+
+repo_name: ninest/swipeable_card
+repo_url: https://github.com/ninest/swipeable_card
+
+
+theme:
+  name: material
+  features:
+    - tabs

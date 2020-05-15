@@ -11,6 +11,7 @@ class SwipeableWidget extends StatefulWidget {
     this.verticalThreshold = 0.95,
     this.onLeftSwipe,
     this.onRightSwipe,
+    this.scrollSensitivity = 6.0,
     @required this.child,
     this.nextCards,
   }) : super(key: key);
@@ -31,6 +32,10 @@ class SwipeableWidget extends StatefulWidget {
 
   /// Function executed when the card is swiped lieft
   final Function onRightSwipe;
+
+
+  /// The multiplier for the scroll value
+  final double scrollSensitivity;
 
   /// The child widget, which is swipeable
   final Widget child;
@@ -99,8 +104,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
                       setState(() {
                         // setting new alignment based on finger position
                         _childAlign = Alignment(
-                          _childAlign.x + 8 * details.delta.dx / screenWidth,
-                          _childAlign.y + 10 * details.delta.dy / screenHeight,
+                          _childAlign.x + widget.scrollSensitivity * details.delta.dx / screenWidth,
+                          _childAlign.y + widget.scrollSensitivity * details.delta.dy / screenHeight,
                         );
                       });
                     },

@@ -50,7 +50,7 @@ class _ExampleRouteSlideState extends State<ExampleRouteSlide> {
             else
               // if the deck is complete, add a button to reset deck
               Center(
-                child: FlatButton(
+                child: TextButton(
                   child: Text("Reset deck"),
                   onPressed: () => setState(() => currentCardIndex = 0),
                 ),
@@ -92,11 +92,11 @@ class _ExampleRouteSlideState extends State<ExampleRouteSlide> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text("Left"),
           onPressed: () => cardController.triggerSwipeLeft(),
         ),
-        FlatButton(
+        TextButton(
           child: Text("Right"),
           onPressed: () => cardController.triggerSwipeRight(),
         ),

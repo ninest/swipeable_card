@@ -4,7 +4,7 @@ import 'package:swipeable_card/src/swipeable_widget_controller.dart';
 Animation<Alignment> cardDismissAlignmentAnimation(
   AnimationController controller,
   Alignment startAlign,
-  Direction dir,
+  Direction? dir,
 ) {
   double x, y;
   // find direction it's being disissed

@@ -1,7 +1,7 @@
 typedef TriggerListener = void Function(Direction dir);
 
 class SwipeableWidgetController {
-  TriggerListener _listener;
+  late TriggerListener _listener;
 
   void triggerSwipeLeft() =>
       _listener(Direction.left);

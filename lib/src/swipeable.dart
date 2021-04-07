@@ -4,7 +4,7 @@ import 'swipeable_widget_controller.dart';
 
 class SwipeableWidget extends StatefulWidget {
   SwipeableWidget({
-    Key key,
+    Key? key,
     this.cardController,
     this.animationDuration = 700,
     this.horizontalThreshold = 0.85,
@@ -12,11 +12,11 @@ class SwipeableWidget extends StatefulWidget {
     this.onLeftSwipe,
     this.onRightSwipe,
     this.scrollSensitivity = 6.0,
-    @required this.child,
+    required this.child,
     this.nextCards,
   }) : super(key: key);
 
-  final SwipeableWidgetController cardController;
+  final SwipeableWidgetController? cardController;
 
   /// Animation duration in millseconds
   final int animationDuration;
@@ -28,10 +28,10 @@ class SwipeableWidget extends StatefulWidget {
   final double verticalThreshold;
 
   /// Function executed when the card is swiped lieft
-  final Function onLeftSwipe;
+  final Function? onLeftSwipe;
 
   /// Function executed when the card is swiped lieft
-  final Function onRightSwipe;
+  final Function? onRightSwipe;
 
   /// The multiplier for the scroll value
   final double scrollSensitivity;
@@ -41,7 +41,7 @@ class SwipeableWidget extends StatefulWidget {
 
   /// Any widgets to show behind the [child]. These will most likely be the next
   /// few cards in the deck
-  final List<Widget> nextCards;
+  final List<Widget>? nextCards;
 
   @override
   _SwipeableWidgetState createState() => _SwipeableWidgetState();
@@ -49,12 +49,13 @@ class SwipeableWidget extends StatefulWidget {
 
 class _SwipeableWidgetState extends State<SwipeableWidget>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Alignment _childAlign;
+
+  late AnimationController _controller;
+  late Alignment _childAlign;
   Alignment _initialAlignment = Alignment.center;
 
   // stores the direction in which the card is being dismissed
-  Direction _dir;
+  Direction? _dir;
 
   @override
   void initState() {
@@ -87,7 +88,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
       child: Stack(
         children: <Widget>[
           // widgets behind current card
-          ...widget.nextCards,
+          ...?widget.nextCards,
 
           // current card
           child(),
@@ -114,7 +115,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
                       animateCardLeaving(Direction.left);
                     else {
                       // when direction is null, it goes back to the center
-                      animateCardLeaving(null);
+                      animateCardLeaving();
                     }
                   }),
                 )
@@ -124,8 +125,8 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
     );
   }
 
-  void animateCardLeaving(Direction dir) {
-    Function then;
+  void animateCardLeaving([Direction? dir]) {
+    Function? then;
     switch (dir) {
       case (Direction.left):
         then = widget.onLeftSwipe;
@@ -145,7 +146,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
     _controller.value = 0.0;
 
     // once the animation is over, execute the function
-    _controller.forward().then((value) => then());
+    _controller.forward().then((value) => then?.call());
   }
 
   Widget child() {
